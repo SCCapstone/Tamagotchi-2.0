@@ -4,6 +4,8 @@ package com.example.game;
 //Brian Change
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.view.ActionMode.Callback;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ public class MainActivity extends Activity {
     }
     
     public void newGame(View v_choosePet){
-    	
+    	Intent i = new Intent(getApplicationContext(), choosePet.class);
+    	startActivity(i);
     }
 }
