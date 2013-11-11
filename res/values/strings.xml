@@ -7,10 +7,11 @@
     <string name="newgame">New Game</string>
     <string name="exitgame">Exit Game</string>
     <string name="tamagotchi">Tamagotchi 2.0</string>
-	<string name="choose_pet">Choose a pet here!</string>
-	<string name="dog">Dog</string>
-	<string name="cat">Cat</string>
-	<string name="dragon">Dragon</string>
-    
+    <string name="choose_pet">Choose a pet here!</string>
+    <string name="dog">Dog</string>
+    <string name="cat">Cat</string>
+    <string name="dragon">Dragon</string>
+    <string name="title_activity_choose_name">ChooseName</string>
+    <string name="title_activity_choose_pet">ChoosePet</string>
 
 </resources>

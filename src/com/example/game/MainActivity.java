@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
     }
     
     public void newGame(View v_choosePet){
-    	Intent i = new Intent(getApplicationContext(), choosePet.class);
+    	Intent i = new Intent(getApplicationContext(), ChoosePet.class);
     	startActivity(i);
     }
 }
