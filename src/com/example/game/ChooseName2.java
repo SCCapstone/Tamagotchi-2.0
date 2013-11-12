@@ -1,22 +1,19 @@
 package com.example.game;
 
-//test
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
 
-public class ChoosePet extends Activity {
+public class ChooseName2 extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choose_pet);
+		setContentView(R.layout.activity_choose_name2);
 		// Show the Up button in the action bar.
 		setupActionBar();
 	}
@@ -34,7 +31,7 @@ public class ChoosePet extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.choose_pet, menu);
+		getMenuInflater().inflate(R.menu.choose_name2, menu);
 		return true;
 	}
 
@@ -54,21 +51,5 @@ public class ChoosePet extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	public void catClick(View v_chooseCat){
-    	Intent i = new Intent(getApplicationContext(), ChooseName2.class);
-    	startActivity(i);
-    }
-	
-	public void dogClick(View v_chooseDog){
-    	Intent i = new Intent(getApplicationContext(), ChooseName2.class);
-    	startActivity(i);
-    }
-	
-	public void dragonClick(View v_chooseDragon){
-    	Intent i = new Intent(getApplicationContext(), ChooseName2.class);
-    	startActivity(i);
-    }
-	
 
 }

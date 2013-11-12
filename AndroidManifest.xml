@@ -39,6 +39,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.game.MainActivity" />
         </activity>
+        <activity
+            android:name="com.example.game.ChooseName2"
+            android:label="@string/title_activity_choose_name2"
+            android:parentActivityName="com.example.game.ChoosePet" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.game.ChoosePet" />
+        </activity>
+        <activity
+            android:name="com.example.game.GameScreen"
+            android:label="@string/title_activity_game_screen"
+            android:parentActivityName="com.example.game.ChooseName2" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.game.ChooseName2" />
+        </activity>
     </application>
 
 </manifest>
