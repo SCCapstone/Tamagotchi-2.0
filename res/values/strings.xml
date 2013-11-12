@@ -13,5 +13,7 @@
     <string name="dragon">Dragon</string>
     <string name="title_activity_choose_name">ChooseName</string>
     <string name="title_activity_choose_pet">ChoosePet</string>
+    <string name="title_activity_choose_name2">ChooseName2</string>
+    <string name="title_activity_game_screen">GameScreen</string>
 
 </resources>

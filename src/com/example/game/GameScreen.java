@@ -8,12 +8,12 @@ import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.os.Build;
 
-public class ChooseName extends Activity {
+public class GameScreen extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choose_name);
+		setContentView(R.layout.activity_game_screen);
 		// Show the Up button in the action bar.
 		setupActionBar();
 	}
@@ -31,7 +31,7 @@ public class ChooseName extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.choose_name, menu);
+		getMenuInflater().inflate(R.menu.game_screen, menu);
 		return true;
 	}
 
