@@ -27,13 +27,13 @@
         <Button
             android:id="@+id/button1"
             style="?android:attr/buttonStyleSmall"
-            android:background="@color/yellow"
-    		android:textColor="@color/bluedark"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
-            android:onClick="newGame"
-            android:text="@string/newgame" />
+            android:background="@color/yellow"
+            android:onClick="dogClick"
+            android:text="@string/dog"
+            android:textColor="@color/bluedark" />
 
         <Button
             android:id="@+id/button2"
@@ -43,19 +43,21 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
+            android:layout_marginBottom="10dip"
             android:layout_gravity="center_horizontal|center"
-            android:text="@string/exitgame" />
+            android:onClick="catClick"
+            android:text="@string/cat" />
         
          <Button
-            android:id="@+id/button2"
+            android:id="@+id/button3"
             style="?android:attr/buttonStyleSmall"
             android:background="@color/yellow"
     		android:textColor="@color/bluedark"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
-            android:layout_gravity="center_horizontal|center"
-            android:text="@string/exitgame" />
+            android:onClick="dragonClick"
+            android:text="@string/dragon" />
 
     </LinearLayout>
 
