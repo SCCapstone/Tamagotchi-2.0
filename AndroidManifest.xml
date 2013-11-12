@@ -15,13 +15,29 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.game.MainActivity"
-            android:label="@string/app_name" 
-            android:screenOrientation="landscape">
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.game.ChooseName"
+            android:label="@string/title_activity_choose_name"
+            android:parentActivityName="com.example.game.choosePet" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.game.choosePet" />
+        </activity>
+        <activity
+            android:name="com.example.game.ChoosePet"
+            android:label="@string/title_activity_choose_pet"
+            android:parentActivityName="com.example.game.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.game.MainActivity" />
         </activity>
     </application>
 

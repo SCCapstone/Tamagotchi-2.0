@@ -1,7 +1,5 @@
 package com.example.game;
-//testing...change
-//EVAN CHANGE
-//Brian Change
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -17,8 +15,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -27,7 +23,7 @@ public class MainActivity extends Activity {
     }
     
     public void newGame(View v_choosePet){
-    	Intent i = new Intent(getApplicationContext(), choosePet.class);
+    	Intent i = new Intent(getApplicationContext(), ChoosePet.class);
     	startActivity(i);
     }
 }
