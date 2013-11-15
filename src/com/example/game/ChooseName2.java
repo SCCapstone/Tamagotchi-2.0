@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 
 public class ChooseName2 extends Activity {
@@ -51,5 +53,10 @@ public class ChooseName2 extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void submitClick(View v_submitClick){
+    	Intent i = new Intent(getApplicationContext(), GameScreen.class);
+    	startActivity(i);
+    }
 
 }
