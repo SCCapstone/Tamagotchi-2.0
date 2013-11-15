@@ -26,6 +26,7 @@
         <activity
             android:name="com.example.game.ChooseName"
             android:label="@string/title_activity_choose_name"
+            android:screenOrientation="landscape" 
             android:parentActivityName="com.example.game.choosePet" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -34,6 +35,7 @@
         <activity
             android:name="com.example.game.ChoosePet"
             android:label="@string/title_activity_choose_pet"
+            android:screenOrientation="landscape" 
             android:parentActivityName="com.example.game.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -42,6 +44,7 @@
         <activity
             android:name="com.example.game.ChooseName2"
             android:label="@string/title_activity_choose_name2"
+            android:screenOrientation="landscape" 
             android:parentActivityName="com.example.game.ChoosePet" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -50,6 +53,7 @@
         <activity
             android:name="com.example.game.GameScreen"
             android:label="@string/title_activity_game_screen"
+            android:screenOrientation="landscape" 
             android:parentActivityName="com.example.game.ChooseName2" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
