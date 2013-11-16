@@ -11,9 +11,10 @@
     <string name="dog">Dog</string>
     <string name="cat">Cat</string>
     <string name="dragon">Dragon</string>
-    <string name="title_activity_choose_name">ChooseName</string>
+    <string name="choose_pet_name">Enter Your Pet's Name:</string><string name="title_activity_choose_name">ChooseName</string>
     <string name="title_activity_choose_pet">ChoosePet</string>
     <string name="title_activity_choose_name2">ChooseName2</string>
     <string name="title_activity_game_screen">GameScreen</string>
+    
 
 </resources>
