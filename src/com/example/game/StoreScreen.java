@@ -9,7 +9,7 @@ import android.annotation.TargetApi;
 import android.os.Build;
 
 public class StoreScreen extends Activity {
-
+	//Michael's page to handle
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
