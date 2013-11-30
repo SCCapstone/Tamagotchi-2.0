@@ -24,19 +24,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.game.ChooseName"
-            android:label="@string/title_activity_choose_name"
-            android:screenOrientation="landscape" 
-            android:parentActivityName="com.example.game.choosePet" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.game.choosePet" />
-        </activity>
-        <activity
             android:name="com.example.game.ChoosePet"
             android:label="@string/title_activity_choose_pet"
-            android:screenOrientation="landscape" 
-            android:parentActivityName="com.example.game.MainActivity" >
+            android:parentActivityName="com.example.game.MainActivity"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.game.MainActivity" />
@@ -44,8 +35,8 @@
         <activity
             android:name="com.example.game.ChooseName2"
             android:label="@string/title_activity_choose_name2"
-            android:screenOrientation="landscape" 
-            android:parentActivityName="com.example.game.ChoosePet" >
+            android:parentActivityName="com.example.game.ChoosePet"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.game.ChoosePet" />
@@ -53,11 +44,29 @@
         <activity
             android:name="com.example.game.GameScreen"
             android:label="@string/title_activity_game_screen"
-            android:screenOrientation="landscape" 
-            android:parentActivityName="com.example.game.ChooseName2" >
+            android:parentActivityName="com.example.game.ChooseName2"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.game.ChooseName2" />
+        </activity>
+        <activity
+            android:name="com.example.game.QuestionScreen"
+            android:label="@string/title_activity_question_screen"
+            android:parentActivityName="com.example.game.GameScreen" 
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.game.GameScreen" />
+        </activity>
+        <activity
+            android:name="com.example.game.StoreScreen"
+            android:label="@string/title_activity_store_screen"
+            android:parentActivityName="com.example.game.GameScreen" 
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.game.GameScreen" />
         </activity>
     </application>
 

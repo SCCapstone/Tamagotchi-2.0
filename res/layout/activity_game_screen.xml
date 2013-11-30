@@ -1,79 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	android:id="@+id/widget40"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:background="@color/bluedark">
 
-    <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/bluedark" >
+<RelativeLayout
+    android:id="@+id/widget44"
+    android:layout_width="361dp"
+    android:layout_height="269dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:layout_toLeftOf="@+id/widget43" >
 
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-        	android:orientation="horizontal" 
-        	>
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="TextView"
+        android:textColor="@color/yellow"
+        android:textSize="30sp" />
 
-            <ImageButton
-                android:id="@+id/imageButton1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
-                android:onClick="dogClick" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView1"
+        android:layout_marginBottom="23dp"
+        android:layout_marginRight="102dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:src="@drawable/ic_launcher" />
 
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
-                android:layout_marginRight="20dp"
-            	android:layout_marginLeft="20dp"
-            	android:onClick="catClick" />
+</RelativeLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
-                android:onClick="dragonClick" />
+<LinearLayout
+    android:id="@+id/widget43"
+    android:layout_width="110dp"
+    android:layout_height="269dp"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical" >
 
-        </TableRow>
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/questionButton" 
+        android:background="@color/yellow"
+        android:textColor="@color/bluedark"
+        android:layout_marginBottom="10dip"
+        android:onClick="questionScreen"/>
 
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal" >
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/feedButton" 
+        android:background="@color/yellow"
+        android:textColor="@color/bluedark"
+        android:layout_marginBottom="10dip"/>
 
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/yellow"
-                android:text="@string/dog"
-                android:textColor="@color/bluedark"
-                android:onClick="dogClick" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/petButton" 
+        android:background="@color/yellow"
+        android:textColor="@color/bluedark"
+        android:layout_marginBottom="10dip"/>
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/yellow"
-                android:text="@string/cat"
-                android:textColor="@color/bluedark"
-                android:onClick="catClick" />
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/storeButton" 
+        android:background="@color/yellow"
+        android:textColor="@color/bluedark"
+        android:layout_marginBottom="10dip"
+        android:onClick="storeScreen"/>
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/yellow"
-                android:text="@string/dragon"
-                android:textColor="@color/bluedark"
-                android:onClick="dragonClick" />
-        </TableRow>
+</LinearLayout>
 
-    </TableLayout>
+</RelativeLayout>

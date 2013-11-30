@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Game</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="newgame">New Game</string>
-    <string name="exitgame">Exit Game</string>
-    <string name="tamagotchi">Tamagotchi 2.0</string>
-    <string name="choose_pet">Choose a pet here!</string>
-    <string name="dog">Dog</string>
-    <string name="cat">Cat</string>
-    <string name="dragon">Dragon</string>
-    <string name="choose_pet_name">Enter Your Pets Name</string>
     <string name="title_activity_choose_name">ChooseName</string>
     <string name="title_activity_choose_pet">ChoosePet</string>
     <string name="title_activity_choose_name2">ChooseName2</string>
     <string name="title_activity_game_screen">GameScreen</string>
-    
+    <string name="app_name">Pet App</string>
+    <string name="action_settings">Settings</string>
+    <string name="newGameButton">New Game</string>
+    <string name="exitGameButton">Exit Game</string>
+    <string name="tamagotchi">Tamagotchi 2.0</string>
+    <string name="choosePetButton">Choose a pet here!</string>
+    <string name="dogButton">Dog</string>
+    <string name="catButton">Cat</string>
+    <string name="dragonButton">Dragon</string>
+    <string name="chooseNameButton">Name Your Pet</string>
+    <string name="questionButton">Question</string>
+    <string name="feedButton">Feed</string>
+    <string name="petButton">Pet</string>
+    <string name="storeButton">Store</string>
+    <string name="title_activity_question_screen">QuestionScreen</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_store_screen">StoreScreen</string>
 
 </resources>

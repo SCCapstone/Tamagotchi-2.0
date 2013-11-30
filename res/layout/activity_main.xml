@@ -15,7 +15,7 @@
         android:background="@color/bluedark"
     	android:textColor="@color/yellow"
         android:layout_weight="0"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textSize="50sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,13 +27,13 @@
         <Button
             android:id="@+id/button1"
             style="?android:attr/buttonStyleSmall"
-            android:background="@color/yellow"
-    		android:textColor="@color/bluedark"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
+            android:background="@color/yellow"
             android:onClick="newGame"
-            android:text="@string/newgame" />
+            android:text="@string/newGameButton"
+            android:textColor="@color/bluedark" />
 
         <Button
             android:id="@+id/button2"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
             android:layout_gravity="center_horizontal|center"
-            android:text="@string/exitgame" />
+            android:text="@string/exitGameButton" />
 
     </LinearLayout>
 

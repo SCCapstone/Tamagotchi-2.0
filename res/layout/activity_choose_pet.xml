@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/yellow"
-                android:text="@string/dog"
+                android:text="@string/dogButton"
                 android:textColor="@color/bluedark" 
                 android:onClick="dogClick"/>
 
@@ -59,7 +59,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@color/yellow"
-                android:text="@string/cat"
+                android:text="@string/catButton"
                 android:textColor="@color/bluedark"
                 android:onClick="catClick" />
 
@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/yellow"
-                android:text="@string/dragon"
+                android:text="@string/dragonButton"
                 android:textColor="@color/bluedark"
                 android:onClick="dragonClick" />
         </TableRow>

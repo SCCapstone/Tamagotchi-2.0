@@ -4,22 +4,16 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
-import android.view.View;
-import android.widget.EditText;
 
-public class ChooseName2 extends Activity {
-	
-	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+public class QuestionScreen extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_choose_name2);
+		setContentView(R.layout.activity_question_screen);
 		// Show the Up button in the action bar.
 		setupActionBar();
 	}
@@ -37,7 +31,7 @@ public class ChooseName2 extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.choose_name2, menu);
+		getMenuInflater().inflate(R.menu.question_screen, menu);
 		return true;
 	}
 
@@ -56,19 +50,6 @@ public class ChooseName2 extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-	
-	public void submitClick(View v_submitClick){
-    	Intent i = new Intent(getApplicationContext(), GameScreen.class);
-    	startActivity(i);
-    }
-	
-	public void sendMessage(View view) {
-	    Intent intent = new Intent(this, GameScreen.class);
-	    EditText editText = (EditText) findViewById(R.id.edit_message);
-	    String message = editText.getText().toString();
-	    intent.putExtra(EXTRA_MESSAGE, message);
-	    startActivity(intent);
 	}
 
 }
