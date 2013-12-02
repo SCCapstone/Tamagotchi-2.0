@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.View;
 
@@ -25,7 +26,11 @@ public class GameScreen extends Activity {
 	    String message = intent.getStringExtra(ChooseName2.EXTRA_MESSAGE);
 	    
 	    TextView textView = (TextView) findViewById(R.id.textView1);
-	    textView.setText(message);
+	    //textView.setText(message);
+	    
+	    SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    String playerName = settings.getString("player_name", null);
+	    textView.setText(playerName);
 	    
 	    
 	    

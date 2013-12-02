@@ -2,20 +2,33 @@ package com.example.game;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.os.Build;
 
-public class StoreScreen extends Activity {
-	//Michael's page to handle
+public class StoreScreen extends Activity implements OnClickListener{
+	//creating button
+	private Button cButton;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_store_screen);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		//Setting up the confirmation button for when an item is purchase
+		cButton = (Button) findViewById(R.id.button1);
+		
+		cButton.setOnClickListener(this);
 	}
 
 	/**
@@ -50,6 +63,39 @@ public class StoreScreen extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onClick(View view) {
+		switch(view.getId()){
+			case R.id.button1:
+				showOneButtonDialog();
+				break;
+		}
+		
+		
+	}
+	
+	private void showOneButtonDialog(){
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+		dialogBuilder.setTitle("Buy Confirmation");
+		dialogBuilder.setMessage("Buy?");
+		dialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener()
+		{
+			public void onClick(DialogInterface dialog, int which){
+				Toast.makeText(getApplicationContext(), "Clicked YES", Toast.LENGTH_SHORT).show();
+				
+			}
+		});
+		dialogBuilder.setNegativeButton("NO",new DialogInterface.OnClickListener() 
+		{
+			public void onClick(DialogInterface dialog, int which){
+				Toast.makeText(getApplicationContext(), "Clicked NO", Toast.LENGTH_SHORT).show();
+			}
+			
+		});
+		AlertDialog alertDialog = dialogBuilder.create();
+		alertDialog.show();
 	}
 
 }

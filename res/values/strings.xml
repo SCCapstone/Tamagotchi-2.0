@@ -22,5 +22,6 @@
     <string name="title_activity_question_screen">QuestionScreen</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_store_screen">StoreScreen</string>
+    <string name="bk_1">Background 1</string>
 
 </resources>

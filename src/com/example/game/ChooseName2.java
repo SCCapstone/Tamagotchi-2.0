@@ -8,8 +8,8 @@ import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
-import android.view.View;
 import android.widget.EditText;
 
 public class ChooseName2 extends Activity {
@@ -69,6 +69,12 @@ public class ChooseName2 extends Activity {
 	    String message = editText.getText().toString();
 	    intent.putExtra(EXTRA_MESSAGE, message);
 	    startActivity(intent);
+	    
+	    SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+	    editor.putString("player_name", message);
+	    editor.commit();
+	    
 	}
 
 }
