@@ -12,12 +12,15 @@ import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 
 public class StoreScreen extends Activity implements OnClickListener{
 	//creating button
 	private Button cButton;
 	
+	//CODE CHANGED HERE 
+	Activity activity;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class StoreScreen extends Activity implements OnClickListener{
 		cButton = (Button) findViewById(R.id.button1);
 		
 		cButton.setOnClickListener(this);
+		
+		activity = this;
 	}
 
 	/**
@@ -67,8 +72,9 @@ public class StoreScreen extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View view) {
+		Drawable background = null;
 		switch(view.getId()){
-			case R.id.button1:
+			case R.id.button1: 
 				showOneButtonDialog();
 				break;
 		}
@@ -76,6 +82,7 @@ public class StoreScreen extends Activity implements OnClickListener{
 		
 	}
 	
+	//code needed for the first button to get the background working
 	private void showOneButtonDialog(){
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		dialogBuilder.setTitle("Buy Confirmation");
@@ -84,7 +91,17 @@ public class StoreScreen extends Activity implements OnClickListener{
 		{
 			public void onClick(DialogInterface dialog, int which){
 				Toast.makeText(getApplicationContext(), "Clicked YES", Toast.LENGTH_SHORT).show();
+				//code to change the background image				
+				cButton.setBackgroundResource( R.drawable.background1 );
 				
+				//this works as well to change the background
+				//findViewById(R.id.button1).setBackgroundResource(R.drawable.background1);
+				
+				//not working.
+				//cButton.setBackground(this.getResources().getDrawable(R.drawable.background1));
+				
+				
+				//activity.findViewById(android.R.id.content).setBackgroundResource(R.drawable.background1);
 			}
 		});
 		dialogBuilder.setNegativeButton("NO",new DialogInterface.OnClickListener() 
