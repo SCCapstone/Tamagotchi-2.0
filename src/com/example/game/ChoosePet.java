@@ -9,6 +9,7 @@ import android.view.View;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 
 public class ChoosePet extends Activity {
@@ -58,16 +59,31 @@ public class ChoosePet extends Activity {
 	public void catClick(View v_chooseCat){
     	Intent i = new Intent(getApplicationContext(), ChooseName2.class);
     	startActivity(i);
+    	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+	    editor.putString("player_pet", "cat");
+	    editor.commit();
+    	
     }
 	
 	public void dogClick(View v_chooseDog){
     	Intent i = new Intent(getApplicationContext(), ChooseName2.class);
     	startActivity(i);
+    	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+	    editor.putString("player_pet", "dog");
+	    editor.commit();
+    	
     }
 	
 	public void dragonClick(View v_chooseDragon){
     	Intent i = new Intent(getApplicationContext(), ChooseName2.class);
     	startActivity(i);
+    	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+	    editor.putString("player_pet", "dragon");
+	    editor.commit();
+    	
     }
 	
 

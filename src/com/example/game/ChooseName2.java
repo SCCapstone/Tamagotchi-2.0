@@ -13,8 +13,6 @@ import android.os.Build;
 import android.widget.EditText;
 
 public class ChooseName2 extends Activity {
-	
-	public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +65,6 @@ public class ChooseName2 extends Activity {
 	    Intent intent = new Intent(this, GameScreen.class);
 	    EditText editText = (EditText) findViewById(R.id.edit_message);
 	    String message = editText.getText().toString();
-	    intent.putExtra(EXTRA_MESSAGE, message);
 	    startActivity(intent);
 	    
 	    SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);

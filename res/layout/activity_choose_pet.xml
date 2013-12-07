@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:background="@color/bluedark" >
         
         <TableRow
@@ -16,7 +16,7 @@
                 android:id="@+id/imageButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/dog2"
                 android:onClick="dogClick" />
 
             <ImageButton
@@ -25,14 +25,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/cat"
                 android:onClick="catClick" />
 
             <ImageButton
                 android:id="@+id/imageButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"
+                android:src="@drawable/drag2"
                 android:onClick="dragonClick" />
         </TableRow>
 
@@ -49,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/yellow"
                 android:text="@string/dogButton"
-                android:textColor="@color/bluedark" 
+                android:textColor="@color/bluedark"
+                android:textSize="30sp" 
                 android:onClick="dogClick"/>
 
             <Button
@@ -61,6 +62,7 @@
                 android:background="@color/yellow"
                 android:text="@string/catButton"
                 android:textColor="@color/bluedark"
+                android:textSize="30sp" 
                 android:onClick="catClick" />
 
             <Button
@@ -70,6 +72,7 @@
                 android:background="@color/yellow"
                 android:text="@string/dragonButton"
                 android:textColor="@color/bluedark"
+                android:textSize="30sp" 
                 android:onClick="dragonClick" />
         </TableRow>
 

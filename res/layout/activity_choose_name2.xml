@@ -4,22 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bluedark" >
-    
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:text="@string/chooseNameButton"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="80px"
         android:textColor="@color/yellow" />
 
     <EditText
         android:id="@+id/edit_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="61dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="30px"
         android:ems="10"
         android:singleLine="true" >
 
@@ -31,7 +38,10 @@
         android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
         android:onClick="sendMessage"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/arrow" />
     
     </LinearLayout>

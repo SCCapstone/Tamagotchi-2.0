@@ -27,24 +27,39 @@
         <Button
             android:id="@+id/button1"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
             android:background="@color/yellow"
             android:onClick="newGame"
             android:text="@string/newGameButton"
-            android:textColor="@color/bluedark" />
+            android:textColor="@color/bluedark"
+            android:textSize="30sp"  />
 
         <Button
             android:id="@+id/button2"
             style="?android:attr/buttonStyleSmall"
-            android:background="@color/yellow"
-    		android:textColor="@color/bluedark"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dip"
-            android:layout_gravity="center_horizontal|center"
-            android:text="@string/exitGameButton" />
+            android:background="@color/yellow"
+            android:layout_marginBottom="10dip"
+            android:onClick="continueGame"
+            android:text="@string/continueGameButton"
+            android:textColor="@color/bluedark"
+            android:textSize="30sp"  />
+
+        <Button
+            android:id="@+id/button3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:background="@color/yellow"
+            android:onClick="exitGame"
+            android:text="@string/exitGameButton"
+            android:textColor="@color/bluedark"
+            android:textSize="30sp"  />
 
     </LinearLayout>
 
