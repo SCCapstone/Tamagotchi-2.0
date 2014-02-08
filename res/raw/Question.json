@@ -2,7 +2,7 @@
   "Questions": [
     {
       "Question": "How many days are in a week?",
-      "CorrectAnswer": 1,
+      "CorrectAnswer": 0,
       "Answers": [
         {
           "Answer": "7"
