@@ -24,11 +24,41 @@ public class QuestionScreen extends Activity {
 private RadioGroup radioGAns;
 private RadioButton radioAns;
 private Button btnSubmit;
+private String question;
+private String[] answers;
+private int correctAnswer;
+private TextView t;
+
+private RadioButton answer1 = null;
+private RadioButton answer2 = null;
+private RadioButton answer3 = null;
+private RadioButton answer4 = null;
+
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
 setContentView(R.layout.activity_question_screen);
+t=new TextView(this);
+t=(TextView)findViewById(R.id.textView1);
+
 addListenerOnButton();
+QuestionLoader questions = new QuestionLoader();
+question = questions.getQuestion();
+t.setText("test");
+
+answer1 = (RadioButton) findViewById(R.id.radioA);
+answer2 = (RadioButton) findViewById(R.id.radioB);
+answer3 = (RadioButton) findViewById(R.id.radioC);
+answer4 = (RadioButton) findViewById(R.id.radioD);
+answers = questions.getAnswers();
+
+/*
+answer1.setText(answers[0]);
+answer2.setText(answers[1]);
+answer3.setText(answers[2]);
+answer4.setText(answers[3]);
+correctAnswer = questions.getCorrectAnswer();
+*/
 }
 
 private void addListenerOnButton() {
@@ -36,7 +66,6 @@ private void addListenerOnButton() {
 radioGAns= (RadioGroup) findViewById(R.id.radioAns);
 btnSubmit= (Button) findViewById(R.id.btnSubmit);
 btnSubmit.setOnClickListener(new OnClickListener(){
- 
 
 public void onClick(View v){
 // Toast.makeText(QuestionScreen.this, "Correct!!!!!!!!", Toast.LENGTH_SHORT).show();
