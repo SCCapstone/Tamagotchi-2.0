@@ -12,6 +12,7 @@ import org.json.JSONArray;
 
 
 import android.app.Activity;
+import android.content.Intent;
 //import android.os.Handler;
 //import android.content.Intent;
 //import android.content.res.Resources;
@@ -37,7 +38,6 @@ public class QuestionLoader extends Activity {
 	private static final String TAG_ANSWERS = "Answers";
 	private static final String TAG_ANSWER = "Answer";
 	
-
 	//Questions and Answer jsonArray
 	private JSONObject aQuestion;
 	private static JSONArray questionList = null;
@@ -49,22 +49,34 @@ public class QuestionLoader extends Activity {
     
 	BufferedReader bufferedReader = null;
 	
+	Intent menu = null;
+	
 	
 	/**
 	 * Instantiation method.
 	 */
 	public void onCreate(Bundle savedInstanceState)  {
-		/*
-		 * May need to use thread/handler.
-		 */
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question_screen);
-			        try {
-						loadQuestions();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-     }    
+        setContentView(R.layout.activity_main);
+        Thread thread = new Thread() {
+        public void run() {
+        try{
+        Thread.sleep(3000);
+        finish();
+		loadQuestions();
+		qaSetter();
+		Intent intent = new Intent(QuestionLoader.this, QuestionScreen.class);
+        QuestionLoader.this.startActivity(intent);
+		}catch(Exception e){   	
+        }
+        }
+        };
+        thread.start();
+	}
+                
+						//loadQuestions();
+					//	Intent intent = new Intent(QuestionLoader.this, QuestionScreen.class);
+				       // QuestionLoader.this.startActivity(intent); 					           
 	
 	/**
 	 * Class function that reads the json file and loads as a json object
@@ -75,9 +87,13 @@ public class QuestionLoader extends Activity {
 	 */
     private void loadQuestions() throws Exception {
     	try {
-		InputStream questions = this.getBaseContext().getResources()
+    	//BufferedReader questionStreams = new BufferedReader(new InputStreamReader(getAssets().open("question.json")));	
+    		
+    		
+    		
+		InputStream questionStream = this.getBaseContext().getResources()
 				.openRawResource(R.raw.question);
-		bufferedReader = new BufferedReader(new InputStreamReader(questions));
+		bufferedReader = new BufferedReader(new InputStreamReader(questionStream));
 		StringBuilder quesString = new StringBuilder();
 		String aJsonLine = null;
 		while ((aJsonLine = bufferedReader.readLine()) != null) {
@@ -86,9 +102,7 @@ public class QuestionLoader extends Activity {
 		Log.d(this.getClass().toString(), quesString.toString());
 		JSONObject quesObj = new JSONObject(quesString.toString());
 		questionList = quesObj.getJSONArray(TAG_QUESTIONS);
-		
-		qaSetter(); 
-		
+				
 		
 		Log.d(this.getClass().getName(),
 				"Num Questions " + questionList.length());
@@ -98,7 +112,7 @@ public class QuestionLoader extends Activity {
 			try {
 				bufferedReader.close();
 			} catch (Exception e) {
-				Log.e("", e.getMessage().toString(), e.getCause());
+				Log.e("buffered reader", e.getMessage().toString(), e.getCause());
 			}
 			}
        }
@@ -106,6 +120,7 @@ public class QuestionLoader extends Activity {
     /**
      * Setter method that sets the current question and answer 
      * strings.
+     * @throws JSONException 
      */
     private void qaSetter() throws JSONException {
     	//Question setter from json object
@@ -127,7 +142,22 @@ public class QuestionLoader extends Activity {
 	 * 
 	 * @return Current question to be displayed
 	 */
-    public String getQuestion(){
+    public String getQuestion(){  
+    //question = ""+questionList.length();
+    
+    try {
+    	try {
+			loadQuestions();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Log.e("something", e.getMessage().toString(), e.getCause());
+			e.printStackTrace();
+		}
+		qaSetter();
+	} catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     return question;
     }
     	
