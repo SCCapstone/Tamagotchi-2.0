@@ -38,13 +38,15 @@ private RadioButton answer4 = null;
 protected void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
 setContentView(R.layout.activity_question_screen);
+QuestionLoader questions = new QuestionLoader();
+
+
 t=new TextView(this);
 t=(TextView)findViewById(R.id.textView1);
 
 addListenerOnButton();
-QuestionLoader questions = new QuestionLoader();
 question = questions.getQuestion();
-t.setText("test");
+t.setText(question);
 
 answer1 = (RadioButton) findViewById(R.id.radioA);
 answer2 = (RadioButton) findViewById(R.id.radioB);
@@ -52,9 +54,9 @@ answer3 = (RadioButton) findViewById(R.id.radioC);
 answer4 = (RadioButton) findViewById(R.id.radioD);
 answers = questions.getAnswers();
 
-/*
-answer1.setText(answers[0]);
-answer2.setText(answers[1]);
+
+//answer1.setText(answers[0]);
+/*answer2.setText(answers[1]);
 answer3.setText(answers[2]);
 answer4.setText(answers[3]);
 correctAnswer = questions.getCorrectAnswer();
