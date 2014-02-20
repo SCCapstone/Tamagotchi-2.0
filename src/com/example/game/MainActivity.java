@@ -11,6 +11,15 @@ import android.view.ActionMode.Callback;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.view.MenuItem;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
+import android.support.v4.app.NavUtils;
+import android.annotation.TargetApi;
+import android.content.DialogInterface;
+import android.os.Build;
 
 public class MainActivity extends Activity {
 
@@ -19,6 +28,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+
+        //{
+        	//Toast.makeText(getApplicationContext(), gameState, Toast.LENGTH_SHORT).show();
+        	//editor.putString("gameState", "firstRun");
+        	//editor.commit();
+        //}
 
     }
     
@@ -34,23 +51,51 @@ public class MainActivity extends Activity {
     
     public void newGame(View v_choosePet){
     	Intent i = new Intent(getApplicationContext(), ChoosePet.class);
-    	startActivity(i);
     	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
 	    SharedPreferences.Editor editor = settings.edit();
+	    SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+	    SharedPreferences.Editor editorMoney = settingsMoney.edit();
 	    editor.putString("game_state", "startState");
 	    editor.commit();
-	    editor.putString("player_money", null);
+	    editorMoney.putInt("player_money", 5);
+	    editorMoney.commit();
+	    editor.putString("game_started" , "true");
 	    editor.commit();
+	    startActivity(i);
 	    
     }
     
     public void continueGame(View v_gameScreen){
-    	Intent i = new Intent(getApplicationContext(), GameScreen.class);
-    	startActivity(i);
+    	//set all variables to start state
     	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
 	    SharedPreferences.Editor editor = settings.edit();
-	    editor.putString("game_state", "backgroundPurchased");
-	    editor.commit();
+	    String gameStarted = settings.getString("game_started", null);
+	    if(gameStarted.equalsIgnoreCase("true"))
+	    {
+	    	Intent i = new Intent(getApplicationContext(), GameScreen.class);
+    		//Set continue state flag
+	    	editor.putString("game_state", "loadState");
+	    	editor.commit();
+	    	startActivity(i);
+	    }
+	    /*
+	    else
+	    {
+	    	Toast.makeText(getApplicationContext(), "Select New Game", Toast.LENGTH_SHORT).show();
+	    }
+	    */
+	    /*
+    	//if variables are saved allow continue game
+    	if((gameState != "loadState") || (gameState != "startState") || (gameState != "answerCorrect") || (gameState != "backgroundPurchased"))
+    	{
+    		//Toast.makeText(getApplicationContext(), "Select New Game to start a game", Toast.LENGTH_SHORT).show();
+    		Toast.makeText(getApplicationContext(), gameState, Toast.LENGTH_SHORT).show();
+    	}
+    	else
+    	{
+    	*/
+    		
+    	//}
     }
     
     public void exitGame(View v_choosePet){

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ChooseName2 extends Activity {
 
@@ -59,18 +60,20 @@ public class ChooseName2 extends Activity {
 	public void submitClick(View v_submitClick){
     	Intent i = new Intent(getApplicationContext(), GameScreen.class);
     	startActivity(i);
+    	//sendMessage(v_submitClick);
     }
 	
 	public void sendMessage(View view) {
 	    Intent intent = new Intent(this, GameScreen.class);
 	    EditText editText = (EditText) findViewById(R.id.edit_message);
 	    String message = editText.getText().toString();
-	    startActivity(intent);
 	    
 	    SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
 	    SharedPreferences.Editor editor = settings.edit();
 	    editor.putString("player_name", message);
 	    editor.commit();
+	    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+	    startActivity(intent);
 	    
 	}
 
