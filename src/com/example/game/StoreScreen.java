@@ -328,9 +328,11 @@ public class StoreScreen extends Activity implements OnClickListener{
 			public void onClick(DialogInterface dialog, int which){
 				Toast.makeText(getApplicationContext(), "Added Mystery to Beach", Toast.LENGTH_SHORT).show();
 				SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+				SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
 			    SharedPreferences.Editor editor = settings.edit();
-			    editor.putString("player_money", "$0");
-			    editor.commit();
+			    SharedPreferences.Editor editorMoney = settingsMoney.edit();
+			    editorMoney.putInt("player_money", 0);
+			    editorMoney.commit();
 			    editor.putString("game_state", "backgroundPurchased");
 			    editor.commit();
 			    editor.putString("background", "R.drawable.bg1");
