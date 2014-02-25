@@ -26,5 +26,15 @@
     <string name="continueGameButton">Continue</string>
     <string name="question">How many days are in a week?</string>
     <string name="submitButton">Submit</string>
+    <string name="storescreentitle">Store</string>
+    <string name="ss_1">Beach Background - $10 </string>
+    <string name="ss_2">Meadow Background - $30</string>
+    <string name="ss_3">Forest Background - $50</string>
+    <string name="ss_4">Add Trees to Beach - $ 20</string>
+    <string name="ss_5">Add Trees to Meadow - $50</string>
+    <string name="ss_6">Add Trees to Forest - $80</string>
+    <string name="ss_7">Beach Mystery Item - $50</string>
+    <string name="ss_8">Meadow Mystery Item - $100</string>
+    <string name="ss_9">Forest Mystery Item - $150</string>
 
 </resources>
