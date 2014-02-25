@@ -92,8 +92,10 @@ private void showOneButtonDialog(){
 	alertDialog.show();
 	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editor = settings.edit();
-    editor.putString("player_money", "$10");
-    editor.commit();
+    SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+    SharedPreferences.Editor editorMoney = settingsMoney.edit();
+    editorMoney.putInt("player_money", 10);
+    editorMoney.commit();
     editor.putString("game_state", "answerCorrect");
     editor.commit();
 		
