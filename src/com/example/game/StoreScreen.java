@@ -61,14 +61,14 @@ public class StoreScreen extends Activity implements OnClickListener{
 		cButton4.setOnClickListener(this);
 		cButton5 = (Button) findViewById(R.id.button5);
 		cButton5.setOnClickListener(this);
-		cButton6 = (Button) findViewById(R.id.button6);
-		cButton6.setOnClickListener(this);
-		cButton7 = (Button) findViewById(R.id.button7);
-		cButton7.setOnClickListener(this);
-		cButton8 = (Button) findViewById(R.id.button8);
-		cButton8.setOnClickListener(this);
-		cButton9 = (Button) findViewById(R.id.button9);
-		cButton9.setOnClickListener(this);
+//		cButton6 = (Button) findViewById(R.id.button6);
+//		cButton6.setOnClickListener(this);
+//		cButton7 = (Button) findViewById(R.id.button7);
+//		cButton7.setOnClickListener(this);
+//		cButton8 = (Button) findViewById(R.id.button8);
+//		cButton8.setOnClickListener(this);
+//		cButton9 = (Button) findViewById(R.id.button9);
+//		cButton9.setOnClickListener(this);
 	}
 
 	/**
@@ -123,18 +123,18 @@ public class StoreScreen extends Activity implements OnClickListener{
 			case R.id.button5:
 				showOneButtonDialog5();
 				break;
-			case R.id.button6:
-				showOneButtonDialog6();
-				break;
-			case R.id.button7:
-				showOneButtonDialog7();
-				break;
-			case R.id.button8:
-				showOneButtonDialog8();
-				break;
-			case R.id.button9:
-				showOneButtonDialog9();
-				break;
+//			case R.id.button6:
+//				showOneButtonDialog6();
+//				break;
+//			case R.id.button7:
+//				showOneButtonDialog7();
+//				break;
+//			case R.id.button8:
+//				showOneButtonDialog8();
+//				break;
+//			case R.id.button9:
+//				showOneButtonDialog9();
+//				break;
 		}	
 	}
 		
