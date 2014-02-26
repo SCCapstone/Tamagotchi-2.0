@@ -2,9 +2,11 @@ package com.example.game;
 
 import android.widget.Toast;
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,6 +23,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class QuestionScreen extends Activity {
+ProgressDialog progressDialog;
+QuestionLoader questionLoader;
+
 private RadioGroup radioGAns;
 private RadioButton radioAns;
 private Button btnSubmit;
@@ -38,30 +43,45 @@ private RadioButton answer4 = null;
 protected void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
 setContentView(R.layout.activity_question_screen);
-QuestionLoader questions = new QuestionLoader();
-
+progressDialog = ProgressDialog.show(QuestionScreen.this, "",
+		"Loading...");
+questionLoader = new QuestionLoader(getApplicationContext(), mHandler);
+questionLoader.run();
 
 t=new TextView(this);
 t=(TextView)findViewById(R.id.textView1);
 
 addListenerOnButton();
-question = questions.getQuestion();
+question = questionLoader.getQuestion();
 t.setText(question);
 
 answer1 = (RadioButton) findViewById(R.id.radioA);
 answer2 = (RadioButton) findViewById(R.id.radioB);
 answer3 = (RadioButton) findViewById(R.id.radioC);
 answer4 = (RadioButton) findViewById(R.id.radioD);
-answers = questions.getAnswers();
+answers = questionLoader.getAnswers();
 
-
-//answer1.setText(answers[0]);
-/*answer2.setText(answers[1]);
+//String answer1String = answers.toString();
+answer1.setText(answers[0]);
+answer2.setText(answers[1]);
 answer3.setText(answers[2]);
 answer4.setText(answers[3]);
-correctAnswer = questions.getCorrectAnswer();
-*/
+correctAnswer = questionLoader.getCorrectAnswer();
+
 }
+
+//Hanlder list to do when load json finish
+	Handler mHandler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			progressDialog.dismiss();
+//			Toast.makeText(
+//					getApplicationContext(),
+//					"Result JSON: Question: " + questionLoader.getQuestion()
+//							+ " Answer: " + questionLoader.getAnswers()
+//							+ " Correct: " + questionLoader.getCorrectAnswer(),
+//					Toast.LENGTH_SHORT).show();
+		};
+	};
 
 private void addListenerOnButton() {
 // TODO Auto-generated method stub
@@ -114,7 +134,7 @@ private void showOneButtonDialog2(){
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
 // Inflate the menu; this adds items to the action bar if it is present.
- 
+	//getMenuInflater().inflate(R.menu.question_screen, menu);
 return true;
 }
 
