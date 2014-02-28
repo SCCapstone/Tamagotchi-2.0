@@ -4,13 +4,17 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 //import android.os.Handler;
 //import android.content.Intent;
@@ -33,11 +37,6 @@ public class QuestionLoader implements Runnable {
 	private static final String TAG_CORRECTANSWER = "CorrectAnswer";
 	private static final String TAG_ANSWERS = "Answers";
 	private static final String TAG_ANSWER = "Answer";
-	
-//	private static final String TAG_ANSWER2 = "Answer2";
-//	private static final String TAG_ANSWER3 = "Answer3";
-//	private static final String TAG_ANSWER4 = "Answer4";
-
 
 	// Questions and Answer jsonArray
 	private JSONObject aQuestion;
@@ -45,23 +44,33 @@ public class QuestionLoader implements Runnable {
 	private JSONArray answerList;
 
 	private String question;
-//	private String answer1;
-//	private String answer2;
-//	private String answer3;
-//	private String answer4;
 	
 	private String[] answers = new String[4];
+	private int currentQuestion;
 	private int correctAnswer;
 	BufferedReader bufferedReader = null;
 	Intent menu = null;
 
 	Context mContext;
 	Handler mHandler;
+	
+	SharedPreferences questionSettings;
+	SharedPreferences.Editor editorQuestion;
 
 	public QuestionLoader(Context context, Handler handler) {
 		// TODO Auto-generated constructor stub
 		this.mContext = context;
 		this.mHandler = handler;
+		questionSettings = mContext.getSharedPreferences("prefs_questions", Activity.MODE_PRIVATE);
+		editorQuestion = questionSettings.edit();
+		currentQuestion = questionSettings.getInt("currentQuestion", 0);
+		try {
+			loadQuestions();
+			//qaSetter();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -72,9 +81,6 @@ public class QuestionLoader implements Runnable {
 	 */
 	private void loadQuestions() throws Exception {
 		try {
-			// BufferedReader questionStreams = new BufferedReader(new
-			// InputStreamReader(getAssets().open("question.json")));
-
 			InputStream questionStream = mContext.getResources()
 					.openRawResource(R.raw.question);
 			bufferedReader = new BufferedReader(new InputStreamReader(
@@ -108,14 +114,17 @@ public class QuestionLoader implements Runnable {
 	 * @throws JSONException
 	 */
 	private void qaSetter() throws JSONException {
-		// Question setter from json object
-		aQuestion = questionList.getJSONObject(0);
-		question = aQuestion.getString(TAG_QUESTION);
+		editorQuestion.putInt("currentQuestion", currentQuestion);
+		editorQuestion.commit();
+		//Resets if reached end
+		if(currentQuestion>=questionList.length())
+		{
+			currentQuestion = 0;
+		}
 		
-//		answer1 = aQuestion.getString(TAG_ANSWER);
-//		answer2 = aQuestion.getString(TAG_ANSWER2);
-//		answer3 = aQuestion.getString(TAG_ANSWER3);
-//		answer4 = aQuestion.getString(TAG_ANSWER4);
+		// Question setter from json object
+		aQuestion = questionList.getJSONObject(currentQuestion);
+		question = aQuestion.getString(TAG_QUESTION);
 		
 		answerList = aQuestion.getJSONArray(TAG_ANSWERS);
 		// fills array of answers from corresponding question json object
@@ -125,6 +134,7 @@ public class QuestionLoader implements Runnable {
 
 		// sets int number from current question
 		correctAnswer = aQuestion.getInt(TAG_CORRECTANSWER);
+		currentQuestion++;
 	}
 
 	/**
@@ -134,20 +144,6 @@ public class QuestionLoader implements Runnable {
 	 */
 	public String getQuestion() {
 		// question = ""+questionList.length();
-
-		try {
-			try {
-				loadQuestions();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				Log.e("something", e.getMessage().toString(), e.getCause());
-				e.printStackTrace();
-			}
-			qaSetter();
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return question;
 	}
 
@@ -174,7 +170,7 @@ public class QuestionLoader implements Runnable {
 	public void run() {
 		// TODO Auto-generated method stub
 		try {
-			loadQuestions();
+			qaSetter();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
