@@ -34,10 +34,10 @@ private String[] answers;
 private int correctAnswer;
 private TextView t;
 
-private RadioButton answer1 = null;
-private RadioButton answer2 = null;
-private RadioButton answer3 = null;
-private RadioButton answer4 = null;
+private RadioButton answer1;
+private RadioButton answer2;
+private RadioButton answer3;
+private RadioButton answer4;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -85,17 +85,29 @@ private void setText(){
 //					Toast.LENGTH_SHORT).show();
 		};
 	};
+	
+private int correctRadio(){
+	if(correctAnswer==0){
+		return R.id.radioA;
+	}else if (correctAnswer==1){
+		return R.id.radioB;
+	}else if (correctAnswer==2){
+		return R.id.radioC;
+	}else{
+		return R.id.radioD;
+	}
+}
 
-private void addListenerOnButton() {
+private void addListenerOnButton() {	
 // TODO Auto-generated method stub
-radioGAns= (RadioGroup) findViewById(R.id.radioAns);
+radioGAns= (RadioGroup) findViewById(R.id.radioAns);;
 btnSubmit= (Button) findViewById(R.id.btnSubmit);
 btnSubmit.setOnClickListener(new OnClickListener(){
 
 public void onClick(View v){
 // Toast.makeText(QuestionScreen.this, "Correct!!!!!!!!", Toast.LENGTH_SHORT).show();
 int sID=radioGAns.getCheckedRadioButtonId();
-if(sID==R.id.radioA){
+if(sID==correctRadio()){
 //Toast.makeText(QuestionScreen.this, "Correct!!!!!!!!", Toast.LENGTH_SHORT).show();
 showOneButtonDialog();
 }
