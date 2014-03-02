@@ -3,6 +3,8 @@ package com.example.game;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import org.json.JSONArray;
@@ -42,7 +44,8 @@ public class QuestionLoader implements Runnable {
 	private JSONObject aQuestion;
 	private static JSONArray questionList = null;
 	private JSONArray answerList;
-
+	private List<Integer> wrongAnswers = new ArrayList<Integer>();
+	
 	private String question;
 	
 	private String[] answers = new String[4];
@@ -164,6 +167,10 @@ public class QuestionLoader implements Runnable {
 	public String[] getAnswers() {
 		
 		return answers;
+	}
+	
+	public void wrongAnswer(){
+		wrongAnswers.add(currentQuestion);
 	}
 
 	@Override

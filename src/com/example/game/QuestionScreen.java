@@ -32,6 +32,7 @@ private Button btnSubmit;
 private String question;
 private String[] answers;
 private int correctAnswer;
+private int tries =0;
 private TextView t;
 
 private RadioButton answer1;
@@ -57,6 +58,7 @@ private void setText(){
 	addListenerOnButton();
 	question = questionLoader.getQuestion();
 	t.setText(question);
+	
 
 	answer1 = (RadioButton) findViewById(R.id.radioA);
 	answer2 = (RadioButton) findViewById(R.id.radioB);
@@ -105,18 +107,15 @@ btnSubmit= (Button) findViewById(R.id.btnSubmit);
 btnSubmit.setOnClickListener(new OnClickListener(){
 
 public void onClick(View v){
-// Toast.makeText(QuestionScreen.this, "Correct!!!!!!!!", Toast.LENGTH_SHORT).show();
-int sID=radioGAns.getCheckedRadioButtonId();
-if(sID==correctRadio()){
-//Toast.makeText(QuestionScreen.this, "Correct!!!!!!!!", Toast.LENGTH_SHORT).show();
-showOneButtonDialog();
-}
-else 
-//Toast.makeText(QuestionScreen.this, "Wrong!!!!!!!!", Toast.LENGTH_SHORT).show();
-showOneButtonDialog2();
-}
- 
-});
+	int sID=radioGAns.getCheckedRadioButtonId();
+	if(sID==correctRadio()){
+	showOneButtonDialog();
+	}
+	else 
+	showOneButtonDialog2();
+	}
+	 
+	});
 }
 
 private void showOneButtonDialog(){
@@ -133,14 +132,24 @@ private void showOneButtonDialog(){
     editorMoney.commit();
     editor.putString("game_state", "answerCorrect");
     editor.commit();
+    tries=0;
     setText();
 	}
 
 
 private void showOneButtonDialog2(){
 	AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-	dialogBuilder.setTitle("Answer");
-	dialogBuilder.setMessage("Sorry, Try Again");
+	if(tries==0){
+		dialogBuilder.setTitle("Answer");
+		dialogBuilder.setMessage("Sorry, Try Again");
+		tries++;
+	}else{
+		questionLoader.wrongAnswer();
+		dialogBuilder.setTitle("Answer");
+		dialogBuilder.setMessage("Max number of tries!, Next Question");
+		tries=0;
+		setText();
+	}
 	AlertDialog alertDialog = dialogBuilder.create();
 	alertDialog.show();
 }
