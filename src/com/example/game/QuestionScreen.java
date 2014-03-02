@@ -1,12 +1,17 @@
 package com.example.game;
 
+import java.lang.ref.WeakReference;
+import java.util.concurrent.TimeUnit;
+
 import android.widget.Toast;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
+//import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,7 +28,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class QuestionScreen extends Activity {
-ProgressDialog progressDialog;
+//ProgressDialog progressDialog;
 QuestionLoader questionLoader;
 
 private RadioGroup radioGAns;
@@ -33,6 +38,7 @@ private String question;
 private String[] answers;
 private int correctAnswer;
 private int tries =0;
+//private int questionsAnswered = 0;
 private TextView t;
 
 private RadioButton answer1;
@@ -40,14 +46,28 @@ private RadioButton answer2;
 private RadioButton answer3;
 private RadioButton answer4;
 
+SharedPreferences questionSettings;
+SharedPreferences.Editor editorQuestion;
+
+private static long thirtyMinutes = 1800000;
+
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
+questionSettings = this.getSharedPreferences("prefs_questions", Activity.MODE_PRIVATE);
+editorQuestion = questionSettings.edit();
+long nxtTime = System.currentTimeMillis() - questionSettings.getLong("TIME", 0);
+int waitTime = (int)((thirtyMinutes - nxtTime)/(1000*60))%60;
+if(nxtTime<=thirtyMinutes){
+	openAlert("WAIT","Please wait "+waitTime+" minutes",1);
+}
+else{
 setContentView(R.layout.activity_question_screen);
-progressDialog = ProgressDialog.show(QuestionScreen.this, "",
-		"Loading...");
+//progressDialog = ProgressDialog.show(QuestionScreen.this, "",
+//		"Loading...");
+resetTime();
 questionLoader = new QuestionLoader(getApplicationContext(), mHandler);
-this.setText();
+this.setText();}
 }
 
 private void setText(){
@@ -74,19 +94,6 @@ private void setText(){
 	correctAnswer = questionLoader.getCorrectAnswer();
 }
 
-//Hanlder list to do when load json finish
-	Handler mHandler = new Handler() {
-		public void handleMessage(android.os.Message msg) {
-			progressDialog.dismiss();
-		  //  questionLoader.run();
-//			Toast.makeText(
-//					getApplicationContext(),
-//					"Result JSON: Question: " + questionLoader.getQuestion()
-//							+ " Answer: " + questionLoader.getAnswers()
-//							+ " Correct: " + questionLoader.getCorrectAnswer(),
-//					Toast.LENGTH_SHORT).show();
-		};
-	};
 	
 private int correctRadio(){
 	if(correctAnswer==0){
@@ -114,16 +121,11 @@ public void onClick(View v){
 	else 
 	showOneButtonDialog2();
 	}
-	 
 	});
 }
 
 private void showOneButtonDialog(){
-	AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-	dialogBuilder.setTitle("Answer");
-	dialogBuilder.setMessage("You Are Correct!");
-	AlertDialog alertDialog = dialogBuilder.create();
-	alertDialog.show();
+	openAlert("Answer","You Are Correct!",0);
 	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editor = settings.edit();
     SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
@@ -140,18 +142,23 @@ private void showOneButtonDialog(){
 private void showOneButtonDialog2(){
 	AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 	if(tries==0){
-		dialogBuilder.setTitle("Answer");
-		dialogBuilder.setMessage("Sorry, Try Again");
+		openAlert("Answer","Sorry, Try Again",0);
 		tries++;
 	}else{
 		questionLoader.wrongAnswer();
-		dialogBuilder.setTitle("Answer");
-		dialogBuilder.setMessage("Max number of tries!, Next Question");
+		openAlert("Answer","Max Number of tries, next question",0);
 		tries=0;
 		setText();
 	}
 	AlertDialog alertDialog = dialogBuilder.create();
 	alertDialog.show();
+}
+
+private void questionBreak(){
+	openAlert("BreakTime!","Time out",1);
+	long time = System.currentTimeMillis();
+	editorQuestion.putLong("TIME", time);
+	editorQuestion.commit();
 }
  
 @Override
@@ -161,4 +168,57 @@ public boolean onCreateOptionsMenu(Menu menu) {
 return true;
 }
 
+private void openAlert(String title, String message, int finish) {
+	 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+	 dialogBuilder.setTitle(title);
+	 dialogBuilder.setMessage(message);
+	 if(finish==0){
+	 dialogBuilder.setNeutralButton("OK",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,int iD) {
+	            dialog.cancel();
+			}
+		  });} else{
+			  dialogBuilder.setNeutralButton("OK",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int iD) {
+			            dialog.cancel();
+			            finish();
+					}
+				  });
+	 }
+	 AlertDialog alertDialog = dialogBuilder.create();
+	 alertDialog.show();
+}
+
+@SuppressLint("HandlerLeak")
+//Handler list to do when load json finish
+Handler mHandler = new Handler(new IncomingHandlerCallback());
+class IncomingHandlerCallback implements Handler.Callback{
+    public boolean handleMessage(Message message) {
+    	questionBreak();
+        return true;
+    }
+}
+//		public void handleMessage(android.os.Message msg) {
+////			progressDialog.dismiss();
+//			questionBreak();
+//		  //  questionLoader.run();
+////			Toast.makeText(
+////					getApplicationContext(),
+////					"Result JSON: Question: " + questionLoader.getQuestion()
+////							+ " Answer: " + questionLoader.getAnswers()
+////							+ " Correct: " + questionLoader.getCorrectAnswer(),
+////					Toast.LENGTH_SHORT).show();
+//		};
+//	};
+
+//For Debugging
+public void resetTime(){
+	editorQuestion.putLong("TIME", 0);
+	editorQuestion.commit();
+}
+
+public void handleMessage(Message msg) {
+	// TODO Auto-generated method stub
+	
+}
 }

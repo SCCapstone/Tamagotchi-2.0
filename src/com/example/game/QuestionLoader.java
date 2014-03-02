@@ -16,7 +16,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.preference.PreferenceManager;
+import android.os.Message;
+//import android.preference.PreferenceManager;
 import android.util.Log;
 //import android.os.Handler;
 //import android.content.Intent;
@@ -182,7 +183,9 @@ public class QuestionLoader implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		mHandler.sendEmptyMessage(0);
+		//mHandler.sendEmptyMessage(0);
+		Message msg = new Message();
+		mHandler.sendEmptyMessageDelayed(0, 60000);
 	}
 
 }
