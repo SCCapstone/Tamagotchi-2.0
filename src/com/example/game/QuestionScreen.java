@@ -34,47 +34,15 @@ private String[] answers;
 private int correctAnswer;
 private TextView t;
 
-<<<<<<< HEAD
-private RadioButton answer1 = null;
-private RadioButton answer2 = null;
-private RadioButton answer3 = null;
-private RadioButton answer4 = null;
-=======
 private RadioButton answer1;
 private RadioButton answer2;
 private RadioButton answer3;
 private RadioButton answer4;
->>>>>>> origin/huntleja
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
 setContentView(R.layout.activity_question_screen);
-<<<<<<< HEAD
-QuestionLoader questions = new QuestionLoader();
-
-
-t=new TextView(this);
-t=(TextView)findViewById(R.id.textView1);
-
-addListenerOnButton();
-question = questions.getQuestion();
-t.setText(question);
-
-answer1 = (RadioButton) findViewById(R.id.radioA);
-answer2 = (RadioButton) findViewById(R.id.radioB);
-answer3 = (RadioButton) findViewById(R.id.radioC);
-answer4 = (RadioButton) findViewById(R.id.radioD);
-answers = questions.getAnswers();
-
-
-//answer1.setText(answers[0]);
-/*answer2.setText(answers[1]);
-answer3.setText(answers[2]);
-answer4.setText(answers[3]);
-correctAnswer = questions.getCorrectAnswer();
-*/
-=======
 progressDialog = ProgressDialog.show(QuestionScreen.this, "",
 		"Loading...");
 questionLoader = new QuestionLoader(getApplicationContext(), mHandler);
@@ -102,7 +70,6 @@ private void setText(){
 	answer3.setText(answers[2]);
 	answer4.setText(answers[3]);
 	correctAnswer = questionLoader.getCorrectAnswer();
->>>>>>> origin/huntleja
 }
 
 //Hanlder list to do when load json finish

@@ -61,16 +61,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 		cButton4.setOnClickListener(this);
 		cButton5 = (Button) findViewById(R.id.button5);
 		cButton5.setOnClickListener(this);
-<<<<<<< HEAD
-		cButton6 = (Button) findViewById(R.id.button6);
-		cButton6.setOnClickListener(this);
-		cButton7 = (Button) findViewById(R.id.button7);
-		cButton7.setOnClickListener(this);
-		cButton8 = (Button) findViewById(R.id.button8);
-		cButton8.setOnClickListener(this);
-		cButton9 = (Button) findViewById(R.id.button9);
-		cButton9.setOnClickListener(this);
-=======
 //		cButton6 = (Button) findViewById(R.id.button6);
 //		cButton6.setOnClickListener(this);
 //		cButton7 = (Button) findViewById(R.id.button7);
@@ -79,7 +69,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 //		cButton8.setOnClickListener(this);
 //		cButton9 = (Button) findViewById(R.id.button9);
 //		cButton9.setOnClickListener(this);
->>>>>>> origin/huntleja
 	}
 
 	/**
@@ -134,20 +123,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 			case R.id.button5:
 				showOneButtonDialog5();
 				break;
-<<<<<<< HEAD
-			case R.id.button6:
-				showOneButtonDialog6();
-				break;
-			case R.id.button7:
-				showOneButtonDialog7();
-				break;
-			case R.id.button8:
-				showOneButtonDialog8();
-				break;
-			case R.id.button9:
-				showOneButtonDialog9();
-				break;
-=======
 //			case R.id.button6:
 //				showOneButtonDialog6();
 //				break;
@@ -160,7 +135,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 //			case R.id.button9:
 //				showOneButtonDialog9();
 //				break;
->>>>>>> origin/huntleja
 		}	
 	}
 		
@@ -286,7 +260,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 	}
 
 	private void showOneButtonDialog5(){
-<<<<<<< HEAD
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		dialogBuilder.setTitle("Buy Confirmation");
 		dialogBuilder.setMessage("Buy?");
@@ -316,79 +289,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 		alertDialog.show();
 	}
 
-	private void showOneButtonDialog6(){
-=======
->>>>>>> origin/huntleja
-		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-		dialogBuilder.setTitle("Buy Confirmation");
-		dialogBuilder.setMessage("Buy?");
-		dialogBuilder.setNegativeButton("YES", new DialogInterface.OnClickListener()
-		{
-			public void onClick(DialogInterface dialog, int which){
-<<<<<<< HEAD
-				Toast.makeText(getApplicationContext(), "Added Trees to Forest", Toast.LENGTH_SHORT).show();
-=======
-				Toast.makeText(getApplicationContext(), "Added Trees to Meadow", Toast.LENGTH_SHORT).show();
->>>>>>> origin/huntleja
-				SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
-			    SharedPreferences.Editor editor = settings.edit();
-			    editor.putString("player_money", "$0");
-			    editor.commit();
-			    editor.putString("game_state", "backgroundPurchased");
-			    editor.commit();
-			    editor.putString("background", "R.drawable.bg1");
-			    editor.commit();
-			    
-			}
-		});
-		dialogBuilder.setPositiveButton("NO",new DialogInterface.OnClickListener() 
-		{
-			public void onClick(DialogInterface dialog, int which){
-				Toast.makeText(getApplicationContext(), "Removed Trees", Toast.LENGTH_SHORT).show();
-<<<<<<< HEAD
-			}
-			
-		});
-		AlertDialog alertDialog = dialogBuilder.create();
-		alertDialog.show();
-	}
-
-	private void showOneButtonDialog7(){
-		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-		dialogBuilder.setTitle("Buy Confirmation");
-		dialogBuilder.setMessage("Buy?");
-		dialogBuilder.setNegativeButton("YES", new DialogInterface.OnClickListener()
-		{
-			public void onClick(DialogInterface dialog, int which){
-				Toast.makeText(getApplicationContext(), "Added Mystery to Beach", Toast.LENGTH_SHORT).show();
-				SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
-				SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
-			    SharedPreferences.Editor editor = settings.edit();
-			    SharedPreferences.Editor editorMoney = settingsMoney.edit();
-			    editorMoney.putInt("player_money", 0);
-			    editorMoney.commit();
-			    editor.putString("game_state", "backgroundPurchased");
-			    editor.commit();
-			    editor.putString("background", "R.drawable.bg1");
-			    editor.commit();
-			    
-			}
-		});
-		dialogBuilder.setPositiveButton("NO",new DialogInterface.OnClickListener() 
-		{
-			public void onClick(DialogInterface dialog, int which){
-				Toast.makeText(getApplicationContext(), "Removed Mystery", Toast.LENGTH_SHORT).show();
-=======
->>>>>>> origin/huntleja
-			}
-			
-		});
-		AlertDialog alertDialog = dialogBuilder.create();
-		alertDialog.show();
-	}
-
-<<<<<<< HEAD
-=======
 	private void showOneButtonDialog6(){
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		dialogBuilder.setTitle("Buy Confirmation");
@@ -451,7 +351,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 		alertDialog.show();
 	}
 
->>>>>>> origin/huntleja
 	private void showOneButtonDialog8(){
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		dialogBuilder.setTitle("Buy Confirmation");
