@@ -38,7 +38,7 @@ private String question;
 private String[] answers;
 private int correctAnswer;
 private int tries =0;
-//private int questionsAnswered = 0;
+private int questionsAnsweredCorrect = 0;
 private TextView t;
 
 private RadioButton answer1;
@@ -49,7 +49,7 @@ private RadioButton answer4;
 SharedPreferences questionSettings;
 SharedPreferences.Editor editorQuestion;
 
-private static long thirtyMinutes = 1800000;
+private static long thirtyMinutes = 1800000/2;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +59,14 @@ editorQuestion = questionSettings.edit();
 long nxtTime = System.currentTimeMillis() - questionSettings.getLong("TIME", 0);
 int waitTime = (int)((thirtyMinutes - nxtTime)/(1000*60))%60;
 if(nxtTime<=thirtyMinutes){
+	setContentView(R.layout.activity_question_screen);
 	openAlert("WAIT","Please wait "+waitTime+" minutes",1);
 }
 else{
 setContentView(R.layout.activity_question_screen);
 //progressDialog = ProgressDialog.show(QuestionScreen.this, "",
 //		"Loading...");
+questionsAnsweredCorrect = 0;
 resetTime();
 questionLoader = new QuestionLoader(getApplicationContext(), mHandler);
 this.setText();}
@@ -125,6 +127,10 @@ public void onClick(View v){
 }
 
 private void showOneButtonDialog(){
+	questionsAnsweredCorrect++;
+	if(questionsAnsweredCorrect==10){
+		questionBreak();
+	}
 	openAlert("Answer","You Are Correct!",0);
 	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editor = settings.edit();
@@ -155,7 +161,7 @@ private void showOneButtonDialog2(){
 }
 
 private void questionBreak(){
-	openAlert("BreakTime!","Time out",1);
+	openAlert("BreakTime!","Come back later.",1);
 	long time = System.currentTimeMillis();
 	editorQuestion.putLong("TIME", time);
 	editorQuestion.commit();

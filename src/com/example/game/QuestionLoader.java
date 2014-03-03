@@ -185,7 +185,7 @@ public class QuestionLoader implements Runnable {
 		}
 		//mHandler.sendEmptyMessage(0);
 		Message msg = new Message();
-		mHandler.sendEmptyMessageDelayed(0, 60000);
+		mHandler.sendEmptyMessageDelayed(0, 600000);
 	}
 
 }
