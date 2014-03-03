@@ -61,14 +61,14 @@ public class StoreScreen extends Activity implements OnClickListener{
 		cButton4.setOnClickListener(this);
 		cButton5 = (Button) findViewById(R.id.button5);
 		cButton5.setOnClickListener(this);
-		cButton6 = (Button) findViewById(R.id.button6);
-		cButton6.setOnClickListener(this);
-		cButton7 = (Button) findViewById(R.id.button7);
-		cButton7.setOnClickListener(this);
-		cButton8 = (Button) findViewById(R.id.button8);
-		cButton8.setOnClickListener(this);
-		cButton9 = (Button) findViewById(R.id.button9);
-		cButton9.setOnClickListener(this);
+//		cButton6 = (Button) findViewById(R.id.button6);
+//		cButton6.setOnClickListener(this);
+//		cButton7 = (Button) findViewById(R.id.button7);
+//		cButton7.setOnClickListener(this);
+//		cButton8 = (Button) findViewById(R.id.button8);
+//		cButton8.setOnClickListener(this);
+//		cButton9 = (Button) findViewById(R.id.button9);
+//		cButton9.setOnClickListener(this);
 	}
 
 	/**
@@ -123,18 +123,18 @@ public class StoreScreen extends Activity implements OnClickListener{
 			case R.id.button5:
 				showOneButtonDialog5();
 				break;
-			case R.id.button6:
-				showOneButtonDialog6();
-				break;
-			case R.id.button7:
-				showOneButtonDialog7();
-				break;
-			case R.id.button8:
-				showOneButtonDialog8();
-				break;
-			case R.id.button9:
-				showOneButtonDialog9();
-				break;
+//			case R.id.button6:
+//				showOneButtonDialog6();
+//				break;
+//			case R.id.button7:
+//				showOneButtonDialog7();
+//				break;
+//			case R.id.button8:
+//				showOneButtonDialog8();
+//				break;
+//			case R.id.button9:
+//				showOneButtonDialog9();
+//				break;
 		}	
 	}
 		
@@ -328,9 +328,11 @@ public class StoreScreen extends Activity implements OnClickListener{
 			public void onClick(DialogInterface dialog, int which){
 				Toast.makeText(getApplicationContext(), "Added Mystery to Beach", Toast.LENGTH_SHORT).show();
 				SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+				SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
 			    SharedPreferences.Editor editor = settings.edit();
-			    editor.putString("player_money", "$0");
-			    editor.commit();
+			    SharedPreferences.Editor editorMoney = settingsMoney.edit();
+			    editorMoney.putInt("player_money", 0);
+			    editorMoney.commit();
 			    editor.putString("game_state", "backgroundPurchased");
 			    editor.commit();
 			    editor.putString("background", "R.drawable.bg1");
