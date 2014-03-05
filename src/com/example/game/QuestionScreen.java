@@ -128,12 +128,14 @@ public void onClick(View v){
 
 private void showOneButtonDialog(){
 	questionsAnsweredCorrect++;
-	if(questionsAnsweredCorrect==10){
-		questionBreak();
-	}
-	openAlert("Answer","You Are Correct!",0);
 	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editor = settings.edit();
+	if(questionsAnsweredCorrect==10){
+		questionBreak();
+		editor.putString("game_state", "answerCorrect");
+	    editor.commit();
+	}
+	openAlert("Answer","You Are Correct!",0);
     SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editorMoney = settingsMoney.edit();
     int intMoney = settingsMoney.getInt("player_money", 0);
@@ -163,6 +165,7 @@ private void showOneButtonDialog2(){
 }
 
 private void questionBreak(){
+	
 	openAlert("BreakTime!","Come back later.",1);
 	long time = System.currentTimeMillis();
 	editorQuestion.putLong("TIME", time);
@@ -184,11 +187,23 @@ private void openAlert(String title, String message, int finish) {
 	 dialogBuilder.setNeutralButton("OK",new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int iD) {
 	            dialog.cancel();
+	            Intent i = new Intent(getApplicationContext(), GameScreen.class);
+	        	startActivity(i);
+	        	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	            SharedPreferences.Editor editor = settings.edit();
+	        	editor.putString("game_state", "answerCorrect");
+	            editor.commit();
 			}
 		  });} else{
 			  dialogBuilder.setNeutralButton("OK",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int iD) {
 			            dialog.cancel();
+			            Intent i = new Intent(getApplicationContext(), GameScreen.class);
+			        	startActivity(i);
+			        	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+			            SharedPreferences.Editor editor = settings.edit();
+			        	editor.putString("game_state", "answerCorrect");
+			            editor.commit();
 			            finish();
 					}
 				  });
