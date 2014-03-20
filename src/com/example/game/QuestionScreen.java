@@ -66,7 +66,8 @@ else{
 setContentView(R.layout.activity_question_screen);
 //progressDialog = ProgressDialog.show(QuestionScreen.this, "",
 //		"Loading...");
-questionsAnsweredCorrect = 0;
+SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+questionsAnsweredCorrect = settingsMoney.getInt("player_questionsCorrect", 0);
 resetTime();
 questionLoader = new QuestionLoader(getApplicationContext(), mHandler);
 this.setText();}
@@ -144,6 +145,8 @@ private void showOneButtonDialog(){
     editorMoney.commit();
     editor.putString("game_state", "answerCorrect");
     editor.commit();
+    editorMoney.putInt("player_questionsCorrect", questionsAnsweredCorrect);
+    editorMoney.commit();
     tries=0;
     setText();
 	}
