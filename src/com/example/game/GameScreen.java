@@ -3,6 +3,7 @@ package com.example.game;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 public class GameScreen extends Activity {
 
     public MediaPlayer player;
+    private boolean leaveCalled = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +79,7 @@ public class GameScreen extends Activity {
 	    
 	    if(gameState.equalsIgnoreCase("startState"))
 	    {
-	    	editor.putString("game_state","safeState");
-	    	editor.commit();
+	    	
 	    	String playerName = settings.getString("player_name", null);
 		    //editor.putInt("player_money", 5);
 		    //editor.commit();
@@ -94,8 +95,7 @@ public class GameScreen extends Activity {
 	   
 	    if(gameState.equalsIgnoreCase("loadState"))
 	    {
-	    	editor.putString("game_state","safeState");
-	    	editor.commit();
+	    	
 	    	//get all variables
 	    	//SharedPreferences.Editor editor = settings.edit();
 	    	//editor.putInt("player_money", 5);
@@ -105,12 +105,12 @@ public class GameScreen extends Activity {
 	    	String strMoney = String.valueOf(intMoney);
 		    money.setText(strMoney);
 	    	name.setText(stringName);
+	    	
 	    }
 	    
 	    if(gameState.equalsIgnoreCase("answerCorrect"))
 	    {
-	    	editor.putString("game_state","safeState");
-	    	editor.commit();
+	    	
 	    	//get all variables
 	    	int intMoney = settingsMoney.getInt("player_money", 0);
 	    	String stringName = settings.getString("player_name", null);
@@ -119,11 +119,138 @@ public class GameScreen extends Activity {
 	    	name.setText(stringName);
 	    	
 	    }
-	    
+	    /*
 	    if(gameState.equalsIgnoreCase("backgroundPurchased"))
 	    {
 	    	editor.putString("game_state","safeState");
 	    	editor.commit();
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.bg2);
+	    	
+	    }
+	    */
+	    if(gameState.equalsIgnoreCase("Beach"))
+	    {
+	   
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.beach);
+	    	
+	    }
+	    if(gameState.equalsIgnoreCase("BeachTrees"))
+	    {
+	    	
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.beachtrees);
+	    	
+	    }
+	    if(gameState.equalsIgnoreCase("BeachMystery"))
+	    {
+	    	
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.beachmystery1);
+	    	
+	    }
+	    if(gameState.equalsIgnoreCase("Meadow"))
+	    {
+	    	
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.meadow);
+	    	
+	    }
+	    if(gameState.equalsIgnoreCase("MeadowTrees"))
+	    {
+	    	
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.meadowtrees);
+	    	
+	    }
+	    if(gameState.equalsIgnoreCase("MeadowMystery"))
+	    {
+	    	
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.meadowmystery);
+	    	
+	    }
+	    if(gameState.equalsIgnoreCase("Forest"))
+	    {
+	    	
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.bg2);
+	    	
+	    }
+	    if(gameState.equalsIgnoreCase("ForestTrees"))
+	    {
+	    	
+	    	//get all variables
+	    	int intMoney = settingsMoney.getInt("player_money", 0);
+	    	String stringName = settings.getString("player_name", null);
+	    	//String background = settings.getString("background", null);
+	    	String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+	    	name.setText(stringName);
+	    	View v = this.getWindow().getDecorView();
+	    	v.setBackgroundResource(R.drawable.bg2);
+	    	
+	    }
+	    if(gameState.equalsIgnoreCase("ForestMystery"))
+	    {
+	    	
 	    	//get all variables
 	    	int intMoney = settingsMoney.getInt("player_money", 0);
 	    	String stringName = settings.getString("player_name", null);
@@ -188,11 +315,56 @@ public class GameScreen extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			//NavUtils.navigateUpFromSameTask(this);
+			Intent i = new Intent(getApplicationContext(), MainActivity.class);
+	    	startActivity(i);
+		    player.stop();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intent = new Intent(this,MainActivity.class);
+		    startActivity(intent);
+		    player.stop();
+			//moveTaskToBack(true);
+	        //return true;
+	    }
+		if (keyCode == KeyEvent.KEYCODE_HOME)
+        {
+			player.stop();
+                    }
+        
+	    return super.onKeyDown(keyCode, event);
+	}
+	
+	
+	@Override
+	public void onBackPressed()
+	{
+		Intent intent = new Intent(this,MainActivity.class);
+	    startActivity(intent);
+	    player.stop();
+	}
+	
+	@Override
+	protected void onStop() {   
+	    super.onStop();
+	    // Home button pressed
+	    if(!leaveCalled) {
+	        player.stop();
+	    }
+
+	    leaveCalled = false;
+	}
+	
+	
+	    
 	
     public void feedButton(View v_feedButton){
     	ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
@@ -238,7 +410,7 @@ public class GameScreen extends Activity {
     	startActivity(i);
 	    player.stop();
     }
-    
+   
     public void exitGame(View v_choosePet){
     	Intent i = new Intent(getApplicationContext(), MainActivity.class);
     	startActivity(i);

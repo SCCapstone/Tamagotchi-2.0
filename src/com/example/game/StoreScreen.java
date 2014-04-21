@@ -3,6 +3,7 @@ package com.example.game;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 
@@ -28,8 +30,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 	private Button cButton8;
 	private Button cButton9;
 
-	
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +72,110 @@ public class StoreScreen extends Activity implements OnClickListener{
 		cButton8.setOnClickListener(this);
 		cButton9 = (Button) findViewById(R.id.button9);
 		cButton9.setOnClickListener(this);
+		
+	
+		
+		try{
+			String strTemp = settings.getString("Beach", null);
+			if(strTemp.equalsIgnoreCase("Beach"))
+			{
+				//cButton.setEnabled(false);
+				cButton.setText("Beach Background - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		try{
+			String strTemp1 = settings.getString("Meadow", null);
+			if(strTemp1.equalsIgnoreCase("Meadow"))
+			{
+				//cButton2.setEnabled(false);
+				cButton2.setText("Meadow Background - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		try{
+			String strTemp2 = settings.getString("Forest", null);
+			if(strTemp2.equalsIgnoreCase("Forest"))
+			{
+				//cButton3.setEnabled(false);
+				cButton3.setText("Forest Background - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		try{
+			String strTemp3 = settings.getString("BeachTrees", null);
+			if(strTemp3.equalsIgnoreCase("BeachTrees"))
+			{
+				//cButton4.setEnabled(false);
+				cButton4.setText("Beach with Trees - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		try{
+			
+			String strTemp4 = settings.getString("MeadowTrees", null);
+			if(strTemp4.equalsIgnoreCase("MeadowTrees"))
+			{
+				//cButton5.setEnabled(false);
+				cButton5.setText("Meadow with Trees - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		try{
+			String strTemp5 = settings.getString("ForestTrees", null);
+			if(strTemp5.equalsIgnoreCase("ForestTrees"))
+			{
+				//cButton6.setEnabled(false);
+				cButton6.setText("Forest with Trees - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		try{
+			String strTemp6 = settings.getString("BeachMystery", null);
+			if(strTemp6.equalsIgnoreCase("BeachMystery"))
+			{
+				//cButton7.setEnabled(false);
+				cButton7.setText("Beach Mystery Item - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		try{
+			String strTemp7 = settings.getString("MeadowMystery", null);
+			if(strTemp7.equalsIgnoreCase("MeadowMystery"))
+			{
+				//cButton8.setEnabled(false);
+				cButton8.setText("Meadow Mystery Item - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		try{
+			String strTemp8 = settings.getString("ForestMystery", null);
+			if(strTemp8.equalsIgnoreCase("ForestMystery"))
+			{
+				//cButton9.setEnabled(false);
+				cButton9.setText("Forest Mystery Item - Purchased");
+			}
+		}
+		catch(NullPointerException e){
+			
+		}
+		
 	}
 
 	/**
@@ -103,43 +207,286 @@ public class StoreScreen extends Activity implements OnClickListener{
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
 			NavUtils.navigateUpFromSameTask(this);
+			SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+		    SharedPreferences.Editor editor = settings.edit();
+		    String tempState = settings.getString("game_state", null);
+		    editor.putString("game_state",tempState);
+	    	editor.commit();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
 
 	@Override
 	public void onClick(View view) {
+		SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editor = settings.edit();
+		SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+		int intMoney = settingsMoney.getInt("player_money", 0);
 		switch(view.getId()){
 			case R.id.button1:
-				showOneButtonDialog("Background Changed to Beach", "Background Removed", 10);
+				try{
+					String strTemp = settings.getString("Beach", null);
+					if(strTemp.equalsIgnoreCase("Beach"))
+					{
+						showOneButtonDialog("Background Changed to Beach", "Background Removed", 0);
+						editor.putString("game_state","Beach");
+				    	editor.commit();
+					}
+					else
+					{
+						showOneButtonDialog("Background Changed to Beach", "Background Removed", 10);
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Background Changed to Beach", "Background Removed", 10);
+				}
+				
+				
+				if(intMoney >= 10){
+		    		editor.putString("game_state","Beach");
+			    	editor.commit();
+		    		cButton.setText("Beach Background - Purchased");
+		    		editor.putString("Beach", "Beach");
+		    		editor.commit();
+		    		cButton.setEnabled(false);
+		    	}
 				break;
 			case R.id.button2:
-				showOneButtonDialog("Background Changed to Meadow", "Background Removed", 30);
+				try{
+					String strTemp1 = settings.getString("Meadow", null);
+					if(strTemp1.equalsIgnoreCase("Meadow"))
+					{
+						showOneButtonDialog("Background Changed to Meadow", "Background Removed", 0);
+						editor.putString("game_state","Meadow");
+				    	editor.commit();
+					}
+					else{
+						showOneButtonDialog("Background Changed to Meadow", "Background Removed", 30);
+						
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Background Changed to Meadow", "Background Removed", 30);
+				}
+				
+		    	if(intMoney >= 30){
+		    		editor.putString("game_state","Meadow");
+			    	editor.commit();
+		    		cButton2.setText("Meadow Background - Purchased");
+		    		editor.putString("Meadow", "Meadow");
+		    		editor.commit();
+		    		cButton2.setEnabled(false);
+		    	}
 				break;
 			case R.id.button3:
-				showOneButtonDialog("Background Changed to Forest", "Background Removed", 50);
+				try{
+					String strTemp2 = settings.getString("Forest", null);
+					if(strTemp2.equalsIgnoreCase("Forest"))
+					{
+						showOneButtonDialog("Background Changed to Forest", "Background Removed", 0);
+						editor.putString("game_state","Forest");
+				    	editor.commit();
+					}
+					else{
+						showOneButtonDialog("Background Changed to Forest", "Background Removed", 50);
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Background Changed to Forest", "Background Removed", 50);
+				}
+				
+		    	if(intMoney >= 50){
+		    		editor.putString("game_state","Forest");
+			    	editor.commit();
+		    		cButton3.setText("Forest Background - Purchased");
+		    		editor.putString("Forest", "Forest");
+		    		editor.commit();
+		    		cButton3.setEnabled(false);
+		    	}
 				break;
 			case R.id.button4:
-				showOneButtonDialog("Added Trees to Beach", "Background Removed", 20);
+				try{
+					String strTemp3 = settings.getString("BeachTrees", null);
+					if(strTemp3.equalsIgnoreCase("BeachTrees"))
+					{
+						showOneButtonDialog("Added Trees to Beach", "Background Removed", 0);
+						editor.putString("game_state","BeachTrees");
+				    	editor.commit();
+					}
+					else{
+						showOneButtonDialog("Added Trees to Beach", "Background Removed", 20);
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Added Trees to Beach", "Background Removed", 20);
+				}
+				
+				
+		    	if(intMoney >= 20){
+		    		editor.putString("game_state","BeachTrees");
+			    	editor.commit();
+		    		cButton4.setText("Beach with Trees - Purchased");
+		    		editor.putString("BeachTrees", "BeachTrees");
+		    		editor.commit();
+		    		cButton4.setEnabled(false);
+		    	}
 				break;
 			case R.id.button5:
-				showOneButtonDialog("Added Trees to Meadow", "Background Removed", 50);
+				try{
+					
+					String strTemp4 = settings.getString("MeadowTrees", null);
+					if(strTemp4.equalsIgnoreCase("MeadowTrees"))
+					{
+						showOneButtonDialog("Added Trees to Meadow", "Background Removed", 0);
+						editor.putString("game_state","MeadowTrees");
+						editor.commit();
+					}
+					else{
+						showOneButtonDialog("Added Trees to Meadow", "Background Removed", 50);
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Added Trees to Meadow", "Background Removed", 50);
+				}
+				
+				
+				if(intMoney >= 50){
+					editor.putString("game_state","MeadowTrees");
+					editor.commit();
+					cButton5.setText("Meadow with Trees - Purchased");
+					editor.putString("MeadowTrees", "MeadowTrees");
+					editor.commit();
+					cButton5.setEnabled(false);
+				}
 				break;
 			case R.id.button6:
-				showOneButtonDialog("Added Trees to Forest", "Background Removed", 80);
+				try{
+					String strTemp5 = settings.getString("ForestTrees", null);
+					if(strTemp5.equalsIgnoreCase("ForestTrees"))
+					{
+						showOneButtonDialog("Added Trees to Forest", "Background Removed", 0);
+						editor.putString("game_state","ForestTrees");
+				    	editor.commit();
+					}
+					else{
+						showOneButtonDialog("Added Trees to Forest", "Background Removed", 80);
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Added Trees to Forest", "Background Removed", 80);
+				}
+				
+				
+		    	if(intMoney >= 80){
+		    		editor.putString("game_state","ForestTrees");
+			    	editor.commit();
+		    		cButton6.setText("Forest with Trees - Purchased");
+		    		editor.putString("ForestTrees", "ForestTrees");
+		    		editor.commit();
+		    		cButton6.setEnabled(false);
+		    	}
 				break;
 			case R.id.button7:
-				showOneButtonDialog("Added Mystery to Beach", "Background Removed", 50);
+				try{
+					String strTemp6 = settings.getString("BeachMystery", null);
+					if(strTemp6.equalsIgnoreCase("BeachMystery"))
+					{
+						showOneButtonDialog("Added Mystery to Beach", "Background Removed", 0);
+						editor.putString("game_state","BeachMystery");
+				    	editor.commit();
+					}
+					else{
+						showOneButtonDialog("Added Mystery to Beach", "Background Removed", 50);
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Added Mystery to Beach", "Background Removed", 50);
+				}
+				
+				
+		    	if(intMoney >= 50){
+		    		editor.putString("game_state","BeachMystery");
+			    	editor.commit();
+		    		cButton7.setText("Beach Mystery Item - Purchased");
+		    		editor.putString("BeachMystery", "BeachMystery");
+		    		editor.commit();
+		    		cButton7.setEnabled(false);
+		    	}
 				break;
 			case R.id.button8:
-				showOneButtonDialog("Added Mystery to Meadow", "Background Removed", 100);
+				try{
+					String strTemp7 = settings.getString("MeadowMystery", null);
+					if(strTemp7.equalsIgnoreCase("MeadowMystery"))
+					{
+						showOneButtonDialog("Added Mystery to Meadow", "Background Removed", 0);
+						editor.putString("game_state","MeadowMystery");
+				    	editor.commit();
+					}
+					else{
+						showOneButtonDialog("Added Mystery to Meadow", "Background Removed", 100);
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Added Mystery to Meadow", "Background Removed", 100);
+				}
+				
+				
+		    	if(intMoney >= 100){
+		    		editor.putString("game_state","MeadowMystery");
+			    	editor.commit();
+		    		cButton8.setText("Meadow Mystery Item - Purchased");
+		    		editor.putString("MeadowMystery", "MeadowMystery");
+		    		editor.commit();
+		    		cButton8.setEnabled(false);
+		    	}
 				break;
 			case R.id.button9:
-				showOneButtonDialog("Added Mystery to Forest", "Background Removed", 150);
+				try{
+					String strTemp8 = settings.getString("ForestMystery", null);
+					if(strTemp8.equalsIgnoreCase("ForestMystery"))
+					{
+						showOneButtonDialog("Added Mystery to Forest", "Background Removed", 0);
+						editor.putString("game_state","ForestMystery");
+				    	editor.commit();
+					}
+					else{
+						showOneButtonDialog("Added Mystery to Forest", "Background Removed", 150);
+					}
+				}
+				catch(NullPointerException e){
+					showOneButtonDialog("Added Mystery to Forest", "Background Removed", 150);
+				}
+				
+				
+		    	if(intMoney >= 150){
+		    		editor.putString("game_state","ForestMystery");
+			    	editor.commit();
+			    	cButton9.setText("Forest Mystery Item - Purchased");
+		    		editor.putString("ForestMystery", "ForestMystery");
+		    		editor.commit();
+		    		cButton9.setEnabled(false);
+		    	}
 				break;
 		}	
 	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intent = new Intent(this,GameScreen.class);
+		    startActivity(intent);
+		    SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+		    SharedPreferences.Editor editor = settings.edit();
+		    editor.putString("game_state","loadState");
+	    	editor.commit();
+	    }
+	    return super.onKeyDown(keyCode, event);
+	}
+	
 		
 	
 	private void showOneButtonDialog(final String yesM, final String noM, final int price){
@@ -171,11 +518,12 @@ public class StoreScreen extends Activity implements OnClickListener{
 			    editorMoney.commit();
 			    String strMoney = String.valueOf(intMoney);
 			    money.setText(strMoney);
+			    /*
 			    editor.putString("game_state", "backgroundPurchased");
 			    editor.commit();
 			    editor.putString("background", "R.drawable.bg1");
 			    editor.commit();
-			    
+			    */
 			}
 		});
 		dialogBuilder.setPositiveButton("NO",new DialogInterface.OnClickListener() 
