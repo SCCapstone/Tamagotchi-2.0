@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -367,35 +368,66 @@ public class GameScreen extends Activity {
 	    
 	
     public void feedButton(View v_feedButton){
+    	TextView money = (TextView) findViewById(R.id.textView2);
+    	int price = 2;
     	ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
     	myAnimation.setImageResource(R.anim.anim2);
-	    final AnimationDrawable myAnimationDrawable
-	    = (AnimationDrawable)myAnimation.getDrawable();
+    	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editorMoney = settingsMoney.edit();
+		int intMoney = settingsMoney.getInt("player_money", 0);
+		if(intMoney >= price){
+			intMoney -= price;
+			editorMoney.putInt("player_money", intMoney);
+			editorMoney.commit();
+			String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+		    final AnimationDrawable myAnimationDrawable
+		    = (AnimationDrawable)myAnimation.getDrawable();
 
-	    myAnimation.post(
-	    new Runnable(){
+		    myAnimation.post(
+		    new Runnable(){
 
-	      @Override
-	      public void run() {
-	       myAnimationDrawable.start();
-	      }
-	    });
+		      @Override
+		      public void run() {
+		       myAnimationDrawable.start();
+		      }
+		    });
+		} else{
+			Toast.makeText(getApplicationContext(),  "need more money" , Toast.LENGTH_SHORT).show();
+		}
+	    
     }
     
     public void petButton(View v_petButton){
+    	TextView money = (TextView) findViewById(R.id.textView2);
+    	int price = 1;
     	ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
     	myAnimation.setImageResource(R.anim.anim3);
-	    final AnimationDrawable myAnimationDrawable
-	    = (AnimationDrawable)myAnimation.getDrawable();
+    	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editorMoney = settingsMoney.edit();
+		int intMoney = settingsMoney.getInt("player_money", 0);
+		if(intMoney >= price){
+			intMoney -= price;
+			editorMoney.putInt("player_money", intMoney);
+			editorMoney.commit();
+			String strMoney = String.valueOf(intMoney);
+			money.setText(strMoney);
+			 final AnimationDrawable myAnimationDrawable
+			    = (AnimationDrawable)myAnimation.getDrawable();
 
-	    myAnimation.post(
-	    new Runnable(){
+			    myAnimation.post(
+			    new Runnable(){
 
-	      @Override
-	      public void run() {
-	       myAnimationDrawable.start();
-	      }
-	    });
+			      @Override
+			      public void run() {
+			       myAnimationDrawable.start();
+			      }
+			    });
+		} else{
+			Toast.makeText(getApplicationContext(), "Need more money", Toast.LENGTH_SHORT).show();
+		}
 	    
     }
 
