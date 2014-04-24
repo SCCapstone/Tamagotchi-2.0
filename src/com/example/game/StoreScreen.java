@@ -29,23 +29,10 @@ public class StoreScreen extends Activity implements OnClickListener{
 	private Button cButton7;
 	private Button cButton8;
 	private Button cButton9;
-	
-	private String prevState;
-	public void setPrevState(String tempState)
-	{
-		prevState = tempState;
-	}
-	
-	public String getPrevState()
-	{
-		return prevState;
-		
-	}
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_store_screen);
 		// Show the Up button in the action bar.
@@ -87,14 +74,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 		cButton9.setOnClickListener(this);
 		
 	
-		
-		try{
-			String tempString = settings.getString("game_state", null);
-			setPrevState(tempString);
-		} catch(NullPointerException e){
-			
-			
-		}
 		
 		try{
 			String strTemp = settings.getString("Beach", null);
@@ -216,7 +195,27 @@ public class StoreScreen extends Activity implements OnClickListener{
 		return true;
 	}
 
-	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			NavUtils.navigateUpFromSameTask(this);
+			SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+		    SharedPreferences.Editor editor = settings.edit();
+		    String tempState = settings.getString("game_state", null);
+		    editor.putString("game_state",tempState);
+	    	editor.commit();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 	
 	
 
@@ -233,7 +232,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp.equalsIgnoreCase("Beach"))
 					{
 						showOneButtonDialog("Background Changed to Beach", "Background Removed", 0);
-						cButton.setText("Beach Background - Purchased");
 						editor.putString("game_state","Beach");
 				    	editor.commit();
 					}
@@ -246,17 +244,15 @@ public class StoreScreen extends Activity implements OnClickListener{
 					showOneButtonDialog("Background Changed to Beach", "Background Removed", 10);
 				}
 				
-				editor.putString("button","Beach");
-		    	editor.commit();
-		    	/*
+				
 				if(intMoney >= 10){
-		    		
-		    		//cButton.setText("Beach Background - Purchased");
+		    		editor.putString("game_state","Beach");
+			    	editor.commit();
+		    		cButton.setText("Beach Background - Purchased");
 		    		editor.putString("Beach", "Beach");
 		    		editor.commit();
 		    		cButton.setEnabled(false);
 		    	}
-		    	*/
 				break;
 			case R.id.button2:
 				try{
@@ -264,7 +260,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp1.equalsIgnoreCase("Meadow"))
 					{
 						showOneButtonDialog("Background Changed to Meadow", "Background Removed", 0);
-						cButton2.setText("Meadow Background - Purchased");
 						editor.putString("game_state","Meadow");
 				    	editor.commit();
 					}
@@ -276,17 +271,15 @@ public class StoreScreen extends Activity implements OnClickListener{
 				catch(NullPointerException e){
 					showOneButtonDialog("Background Changed to Meadow", "Background Removed", 30);
 				}
-				editor.putString("button","Meadow");
-		    	editor.commit();
-		    	/*
+				
 		    	if(intMoney >= 30){
-		    		
-		    		//cButton2.setText("Meadow Background - Purchased");
+		    		editor.putString("game_state","Meadow");
+			    	editor.commit();
+		    		cButton2.setText("Meadow Background - Purchased");
 		    		editor.putString("Meadow", "Meadow");
 		    		editor.commit();
 		    		cButton2.setEnabled(false);
 		    	}
-		    	*/
 				break;
 			case R.id.button3:
 				try{
@@ -294,7 +287,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp2.equalsIgnoreCase("Forest"))
 					{
 						showOneButtonDialog("Background Changed to Forest", "Background Removed", 0);
-						cButton3.setText("Forest Background - Purchased");
 						editor.putString("game_state","Forest");
 				    	editor.commit();
 					}
@@ -305,17 +297,15 @@ public class StoreScreen extends Activity implements OnClickListener{
 				catch(NullPointerException e){
 					showOneButtonDialog("Background Changed to Forest", "Background Removed", 50);
 				}
-				editor.putString("button","Forest");
-		    	editor.commit();
-		    	/*
+				
 		    	if(intMoney >= 50){
-		    		
-		    		//cButton3.setText("Forest Background - Purchased");
+		    		editor.putString("game_state","Forest");
+			    	editor.commit();
+		    		cButton3.setText("Forest Background - Purchased");
 		    		editor.putString("Forest", "Forest");
 		    		editor.commit();
 		    		cButton3.setEnabled(false);
 		    	}
-		    	*/
 				break;
 			case R.id.button4:
 				try{
@@ -323,7 +313,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp3.equalsIgnoreCase("BeachTrees"))
 					{
 						showOneButtonDialog("Added Trees to Beach", "Background Removed", 0);
-						cButton4.setText("Beach with Trees - Purchased");
 						editor.putString("game_state","BeachTrees");
 				    	editor.commit();
 					}
@@ -335,17 +324,15 @@ public class StoreScreen extends Activity implements OnClickListener{
 					showOneButtonDialog("Added Trees to Beach", "Background Removed", 20);
 				}
 				
-				editor.putString("button","BeachTrees");
-		    	editor.commit();
-		    	/*
+				
 		    	if(intMoney >= 20){
-		    		
-		    		//cButton4.setText("Beach with Trees - Purchased");
+		    		editor.putString("game_state","BeachTrees");
+			    	editor.commit();
+		    		cButton4.setText("Beach with Trees - Purchased");
 		    		editor.putString("BeachTrees", "BeachTrees");
 		    		editor.commit();
 		    		cButton4.setEnabled(false);
 		    	}
-		    	*/
 				break;
 			case R.id.button5:
 				try{
@@ -354,7 +341,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp4.equalsIgnoreCase("MeadowTrees"))
 					{
 						showOneButtonDialog("Added Trees to Meadow", "Background Removed", 0);
-						cButton5.setText("Meadow with Trees - Purchased");
 						editor.putString("game_state","MeadowTrees");
 						editor.commit();
 					}
@@ -366,17 +352,15 @@ public class StoreScreen extends Activity implements OnClickListener{
 					showOneButtonDialog("Added Trees to Meadow", "Background Removed", 50);
 				}
 				
-				editor.putString("button","MeadowTrees");
-				editor.commit();
-				/*
+				
 				if(intMoney >= 50){
-					
-					//cButton5.setText("Meadow with Trees - Purchased");
+					editor.putString("game_state","MeadowTrees");
+					editor.commit();
+					cButton5.setText("Meadow with Trees - Purchased");
 					editor.putString("MeadowTrees", "MeadowTrees");
 					editor.commit();
 					cButton5.setEnabled(false);
 				}
-				*/
 				break;
 			case R.id.button6:
 				try{
@@ -384,7 +368,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp5.equalsIgnoreCase("ForestTrees"))
 					{
 						showOneButtonDialog("Added Trees to Forest", "Background Removed", 0);
-						cButton6.setText("Forest with Trees - Purchased");
 						editor.putString("game_state","ForestTrees");
 				    	editor.commit();
 					}
@@ -396,18 +379,15 @@ public class StoreScreen extends Activity implements OnClickListener{
 					showOneButtonDialog("Added Trees to Forest", "Background Removed", 80);
 				}
 				
-				editor.putString("button","ForestTrees");
-		    	editor.commit();
-				/*
+				
 		    	if(intMoney >= 80){
-		    		editor.putString("button","ForestTrees");
+		    		editor.putString("game_state","ForestTrees");
 			    	editor.commit();
-		    		//cButton6.setText("Forest with Trees - Purchased");
+		    		cButton6.setText("Forest with Trees - Purchased");
 		    		editor.putString("ForestTrees", "ForestTrees");
 		    		editor.commit();
 		    		cButton6.setEnabled(false);
 		    	}
-		    	*/
 				break;
 			case R.id.button7:
 				try{
@@ -415,7 +395,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp6.equalsIgnoreCase("BeachMystery"))
 					{
 						showOneButtonDialog("Added Mystery to Beach", "Background Removed", 0);
-						cButton7.setText("Beach Mystery Item - Purchased");
 						editor.putString("game_state","BeachMystery");
 				    	editor.commit();
 					}
@@ -427,17 +406,15 @@ public class StoreScreen extends Activity implements OnClickListener{
 					showOneButtonDialog("Added Mystery to Beach", "Background Removed", 50);
 				}
 				
-				editor.putString("button","BeachMystery");
-		    	editor.commit();
-		    	/*
+				
 		    	if(intMoney >= 50){
-		    		
-		    		//cButton7.setText("Beach Mystery Item - Purchased");
+		    		editor.putString("game_state","BeachMystery");
+			    	editor.commit();
+		    		cButton7.setText("Beach Mystery Item - Purchased");
 		    		editor.putString("BeachMystery", "BeachMystery");
 		    		editor.commit();
 		    		cButton7.setEnabled(false);
 		    	}
-		    	*/
 				break;
 			case R.id.button8:
 				try{
@@ -445,7 +422,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp7.equalsIgnoreCase("MeadowMystery"))
 					{
 						showOneButtonDialog("Added Mystery to Meadow", "Background Removed", 0);
-						cButton8.setText("Meadow Mystery Item - Purchased");
 						editor.putString("game_state","MeadowMystery");
 				    	editor.commit();
 					}
@@ -457,17 +433,15 @@ public class StoreScreen extends Activity implements OnClickListener{
 					showOneButtonDialog("Added Mystery to Meadow", "Background Removed", 100);
 				}
 				
-				editor.putString("button","MeadowMystery");
-		    	editor.commit();
-		    	/*
+				
 		    	if(intMoney >= 100){
-		    		
-		    		//cButton8.setText("Meadow Mystery Item - Purchased");
+		    		editor.putString("game_state","MeadowMystery");
+			    	editor.commit();
+		    		cButton8.setText("Meadow Mystery Item - Purchased");
 		    		editor.putString("MeadowMystery", "MeadowMystery");
 		    		editor.commit();
 		    		cButton8.setEnabled(false);
 		    	}
-		    	*/
 				break;
 			case R.id.button9:
 				try{
@@ -475,7 +449,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 					if(strTemp8.equalsIgnoreCase("ForestMystery"))
 					{
 						showOneButtonDialog("Added Mystery to Forest", "Background Removed", 0);
-						cButton9.setText("Forest Mystery Item - Purchased");
 						editor.putString("game_state","ForestMystery");
 				    	editor.commit();
 					}
@@ -487,22 +460,32 @@ public class StoreScreen extends Activity implements OnClickListener{
 					showOneButtonDialog("Added Mystery to Forest", "Background Removed", 150);
 				}
 				
-				editor.putString("button","ForestMystery");
-		    	editor.commit();
-		    	/*
+				
 		    	if(intMoney >= 150){
-		    		
-			    	//cButton9.setText("Forest Mystery Item - Purchased");
+		    		editor.putString("game_state","ForestMystery");
+			    	editor.commit();
+			    	cButton9.setText("Forest Mystery Item - Purchased");
 		    		editor.putString("ForestMystery", "ForestMystery");
 		    		editor.commit();
 		    		cButton9.setEnabled(false);
 		    	}
-		    	*/
 				break;
 		}	
 	}
 	
-	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intent = new Intent(this,GameScreen.class);
+		    startActivity(intent);
+		    SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+		    SharedPreferences.Editor editor = settings.edit();
+		    editor.putString("game_state","loadState");
+	    	editor.commit();
+	    }
+	    return super.onKeyDown(keyCode, event);
+	}
 	
 		
 	
@@ -510,7 +493,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
 		
 		SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
-		
 		int intMoney = settingsMoney.getInt("player_money", 0);
 		
 		if(price > intMoney)
@@ -528,99 +510,14 @@ public class StoreScreen extends Activity implements OnClickListener{
 				Toast.makeText(getApplicationContext(), yesM, Toast.LENGTH_SHORT).show();
 				SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
 			    SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
-				SharedPreferences.Editor editorMoney = settingsMoney.edit();
 				SharedPreferences.Editor editor = settings.edit();
+				SharedPreferences.Editor editorMoney = settingsMoney.edit();
 				int intMoney = settingsMoney.getInt("player_money", 0);
 				intMoney -= price;
 				editorMoney.putInt("player_money", intMoney);
 			    editorMoney.commit();
 			    String strMoney = String.valueOf(intMoney);
 			    money.setText(strMoney);
-			    String button = settings.getString("button", null);
-			    if(button.equalsIgnoreCase("Beach"))
-			    {
-			    	editor.putString("game_state","Beach");
-			    	editor.commit();
-			    	editor.putString("Beach","Beach");
-			    	editor.commit();
-			    	cButton.setText("Beach Background - Purchased");
-			    	
-			    }
-			    if(button.equalsIgnoreCase("BeachTrees"))
-			    {
-			    	editor.putString("game_state","BeachTrees");
-			    	editor.commit();
-			    	editor.putString("BeachTrees","BeachTrees");
-			    	editor.commit();
-			    	cButton4.setText("Beach Background - Purchased");
-			    	
-			    }
-			    if(button.equalsIgnoreCase("BeachMystery"))
-			    {
-			    	editor.putString("game_state","BeachMystery");
-			    	editor.commit();
-			    	editor.putString("BeachMystery","BeachMystery");
-			    	editor.commit();
-			    	cButton7.setText("Beach Background - Purchased");
-			    	
-			    }
-			    if(button.equalsIgnoreCase("Meadow"))
-			    {
-			    	editor.putString("game_state","Meadow");
-			    	editor.commit();
-			    	editor.putString("Meadow","Meadow");
-			    	editor.commit();
-			    	cButton2.setText("Beach Background - Purchased");
-			    	
-			    }
-			    if(button.equalsIgnoreCase("MeadowTrees"))
-			    {
-			    	editor.putString("game_state","MeadowTrees");
-			    	editor.commit();
-			    	editor.putString("MeadowTrees","MeadowTrees");
-			    	editor.commit();
-			    	cButton5.setText("Beach Background - Purchased");
-			    	
-			    }
-			    if(button.equalsIgnoreCase("MeadowMystery"))
-			    {
-			    	editor.putString("game_state","MeadowMystery");
-			    	editor.commit();
-			    	editor.putString("MeadowMystery", "MeadowMystery");
-		    		editor.commit();
-			    	cButton8.setText("Beach Background - Purchased");
-			    
-			    }
-			    if(button.equalsIgnoreCase("Forest"))
-			    {
-			    	editor.putString("game_state","Forest");
-			    	editor.commit();
-			    	editor.putString("Forest","Forest");
-			    	editor.commit();
-			    	cButton3.setText("Beach Background - Purchased");
-			    	
-			    }
-			    if(button.equalsIgnoreCase("ForestTrees"))
-			    {
-			    	editor.putString("game_state","ForestTrees");
-			    	editor.commit();
-			    	editor.putString("ForestTrees","ForestTrees");
-			    	editor.commit();
-			    	cButton6.setText("Beach Background - Purchased");
-			    
-			    }
-			    if(button.equalsIgnoreCase("ForestMystery"))
-			    {
-			    	editor.putString("game_state","ForestMystery");
-			    	editor.commit();
-			    	editor.putString("ForestMystery", "ForestMystery");
-		    		editor.commit();
-			    	cButton9.setText("Forest Mystery Item - Purchased");
-			    
-			    }
-			    
-			    
-			    
 			    /*
 			    editor.putString("game_state", "backgroundPurchased");
 			    editor.commit();
@@ -633,11 +530,6 @@ public class StoreScreen extends Activity implements OnClickListener{
 		{
 			public void onClick(DialogInterface dialog, int which){
 				Toast.makeText(getApplicationContext(), noM, Toast.LENGTH_SHORT).show();
-				SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
-				SharedPreferences.Editor editor = settings.edit();
-				String tempState = getPrevState();
-				editor.putString("game_state",tempState);
-				editor.commit();
 			}
 			
 		});
@@ -647,43 +539,9 @@ public class StoreScreen extends Activity implements OnClickListener{
 	}
 	
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
-		    SharedPreferences.Editor editor = settings.edit();
-		    String tempState = settings.getString("game_state",null);
-		    editor.putString("game_state",tempState);
-	    	editor.commit();
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 
-	/*
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) 
-	{
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			Intent intent = new Intent(this,GameScreen.class);
-		    startActivity(intent);
-		    SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
-		    SharedPreferences.Editor editor = settings.edit();
-		    editor.putString("game_state","loadState");
-	    	editor.commit();
-	    }
-	    return super.onKeyDown(keyCode, event);
-	}
-	*/
+
+
 
 
 

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -15,6 +16,8 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.widget.ImageView;
+
+
 
 public class GameScreen extends Activity {
 
@@ -48,32 +51,66 @@ public class GameScreen extends Activity {
 	    //money.setText(intMoney);
 	    
 	    
-	    //String playerPet = settings.getString("player_pet", null);
-	    /*
-	    //inserting pet's based off a choice made on the previous screen
-	    if(playerPet == "cat")
-	    {
-	    	//insert cat
-	    	//image = catImageFileName
-	    }
-	    if(playerPet == "dog")
-	    {
-	    	String playerName = settings.getString("player_name", null);
-		    name.setText(playerName);
-		    int intMoney = settingsMoney.getInt("player_money", 0);
-		    money.setText(intMoney);
-		    //Toast.makeText(getApplicationContext(), playerName + " " + intMoney, Toast.LENGTH_SHORT).show();
-	    	
-	    }
-	    if(playerPet == "dragon")
-	    {
-	    	//insert dragon
-	    	//image = dragonImageFileName
-	    }
-	    */
-	    
 	    //Getting the game state and deciding what to do with all the variables
 	    String gameState = settings.getString("game_state", null);
+	    
+	    
+	    
+	    String playerPet = settings.getString("player_pet", null);
+	    
+	    //inserting pet's based off a choice made on the previous screen
+	    if(playerPet.equalsIgnoreCase("cat"))
+	    {
+		    //Code to play the initial animation
+	    	ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+		    myAnimation.setImageResource(R.anim.catidle);
+		    final AnimationDrawable myAnimationDrawable
+		    = (AnimationDrawable)myAnimation.getDrawable();
+
+		    myAnimation.post(
+		    new Runnable(){
+
+		      @Override
+		      public void run() {
+		       myAnimationDrawable.start();
+		      }
+		    });
+	    }
+	    if(playerPet.equalsIgnoreCase("dog"))
+	    {
+		    //Code to play the initial animation
+		    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+		    myAnimation.setImageResource(R.anim.dogidle);
+		    final AnimationDrawable myAnimationDrawable
+		    = (AnimationDrawable)myAnimation.getDrawable();
+
+		    myAnimation.post(
+		    new Runnable(){
+
+		      @Override
+		      public void run() {
+		       myAnimationDrawable.start();
+		      }
+		    });
+	    	
+	    }
+	    if(playerPet.equalsIgnoreCase("dragon"))
+	    {
+		    //Code to play the initial animation
+		    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+		    myAnimation.setImageResource(R.anim.dragonidle);
+		    final AnimationDrawable myAnimationDrawable
+		    = (AnimationDrawable)myAnimation.getDrawable();
+
+		    myAnimation.post(
+		    new Runnable(){
+
+		      @Override
+		      public void run() {
+		       myAnimationDrawable.start();
+		      }
+		    });
+	    }
 	    
 	    
 	    
@@ -86,18 +123,7 @@ public class GameScreen extends Activity {
 		   	name.setText(playerName);
 		    int intMoney = settingsMoney.getInt("player_money", 0);
 		    String strMoney = String.valueOf(intMoney);
-		    money.setText(strMoney);
-		    editor.putString("button","x");
-		    editor.putString("Beach","x");
-		    editor.putString("BeachTrees","x");
-		    editor.putString("BeachMystery","x");
-		    editor.putString("Meadow","x");
-		    editor.putString("MeadowTrees","x");
-		    editor.putString("MeadowMystery","x");
-		    editor.putString("Forest","x");
-		    editor.putString("ForestTrees","x");
-		    editor.putString("ForestMystery","x");
-		    editor.commit();
+		    money.setText(strMoney);	
 	    	//set all variables to start state
 		    //SharedPreferences.Editor editor = settings.edit();
 	    	//SharedPreferences.Editor editorMoney = settingsMoney.edit();
@@ -274,20 +300,9 @@ public class GameScreen extends Activity {
 	    	
 	    }
 	    
+
 	 
-	    //Code to play the initial animation
-	    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
-	    final AnimationDrawable myAnimationDrawable
-	    = (AnimationDrawable)myAnimation.getDrawable();
-
-	    myAnimation.post(
-	    new Runnable(){
-
-	      @Override
-	      public void run() {
-	       myAnimationDrawable.start();
-	      }
-	    });
+	    
 	    
 
 	    player = MediaPlayer.create(GameScreen.this, R.raw.music);
@@ -378,35 +393,106 @@ public class GameScreen extends Activity {
 	    
 	
     public void feedButton(View v_feedButton){
+    	TextView money = (TextView) findViewById(R.id.textView2);
+    	int price = 2;
     	ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
-    	myAnimation.setImageResource(R.anim.anim2);
-	    final AnimationDrawable myAnimationDrawable
-	    = (AnimationDrawable)myAnimation.getDrawable();
+    	myAnimation.destroyDrawingCache();
+    	    	
+    	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editorMoney = settingsMoney.edit();
+		
+	  	String playerPet = settings.getString("player_pet", null);
+	  	//Toast.makeText(getApplicationContext(),  playerPet , Toast.LENGTH_SHORT).show();
 
-	    myAnimation.post(
-	    new Runnable(){
+		    //inserting pet's based off a choice made on the previous screen
+		    if(playerPet.equalsIgnoreCase("cat"))
+		    {
+		    	myAnimation.setImageResource(R.anim.catfeed);
+		    }
+		    if(playerPet.equalsIgnoreCase("dog"))
+		    {
+		    	myAnimation.setImageResource(R.anim.dogfeed);
+		    }
+		    if(playerPet.equalsIgnoreCase("dragon"))
+		    {
+		    	myAnimation.setImageResource(R.anim.dragonfeed);
+		    }
+		
+		int intMoney = settingsMoney.getInt("player_money", 0);
+		if(intMoney >= price){
+			intMoney -= price;
+			editorMoney.putInt("player_money", intMoney);
+			editorMoney.commit();
+			String strMoney = String.valueOf(intMoney);
+		    money.setText(strMoney);
+		    final AnimationDrawable myAnimationDrawable
+		    = (AnimationDrawable)myAnimation.getDrawable();
 
-	      @Override
-	      public void run() {
-	       myAnimationDrawable.start();
-	      }
-	    });
+		    myAnimation.post(
+		    new Runnable(){
+
+		      @Override
+		      public void run() {
+		       myAnimationDrawable.stop();
+		       myAnimationDrawable.start();
+		      }
+		    });
+		} else{
+			Toast.makeText(getApplicationContext(),  "need more money" , Toast.LENGTH_SHORT).show();
+		}
+	    
     }
-    
+    //
     public void petButton(View v_petButton){
+    	TextView money = (TextView) findViewById(R.id.textView2);
+    	int price = 1;
     	ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
-    	myAnimation.setImageResource(R.anim.anim3);
-	    final AnimationDrawable myAnimationDrawable
-	    = (AnimationDrawable)myAnimation.getDrawable();
+    	myAnimation.destroyDrawingCache();
 
-	    myAnimation.post(
-	    new Runnable(){
+    	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+		SharedPreferences.Editor editorMoney = settingsMoney.edit();
+		
+	  	String playerPet = settings.getString("player_pet", null);
 
-	      @Override
-	      public void run() {
-	       myAnimationDrawable.start();
-	      }
-	    });
+	    //inserting pet's based off a choice made on the previous screen
+	    if(playerPet.equalsIgnoreCase("cat"))
+	    {
+	    	myAnimation.setImageResource(R.anim.catpet);
+	    }
+	    if(playerPet.equalsIgnoreCase("dog"))
+	    {
+	    	myAnimation.setImageResource(R.anim.dogpet);
+	    }
+	    if(playerPet.equalsIgnoreCase("dragon"))
+	    {
+	    	myAnimation.setImageResource(R.anim.dragonpet);
+	    }
+	
+		
+		int intMoney = settingsMoney.getInt("player_money", 0);
+		if(intMoney >= price){
+			intMoney -= price;
+			editorMoney.putInt("player_money", intMoney);
+			editorMoney.commit();
+			String strMoney = String.valueOf(intMoney);
+			money.setText(strMoney);
+			 final AnimationDrawable myAnimationDrawable
+			    = (AnimationDrawable)myAnimation.getDrawable();
+			    myAnimation.post(
+			    new Runnable(){
+
+			      @Override
+			      public void run() {
+			       myAnimationDrawable.stop();
+			       myAnimationDrawable.start();
+			     
+			      }
+			    });
+		} else{
+			Toast.makeText(getApplicationContext(), "Need more money", Toast.LENGTH_SHORT).show();
+		}
 	    
     }
 

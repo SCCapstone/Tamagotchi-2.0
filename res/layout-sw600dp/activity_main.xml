@@ -24,26 +24,42 @@
         android:gravity="center"
         android:orientation="vertical" >
 
-        <ImageButton
+        <Button
             android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:background="@color/yellow"
             android:onClick="newGame"
-            android:layout_width="341dp"
-            android:layout_height="128dp"
-            android:src="@drawable/newgamebutton" />
+            android:text="@string/newGameButton"
+            android:textColor="@color/bluedark"
+            android:textSize="30sp"  />
 
-        <ImageButton
+        <Button
             android:id="@+id/button2"
-            android:layout_width="421dp"
-            android:layout_height="169dp"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:background="@color/yellow"
+            android:layout_marginBottom="10dip"
             android:onClick="continueGame"
-            android:src="@drawable/continuebutton" />
+            android:text="@string/continueGameButton"
+            android:textColor="@color/bluedark"
+            android:textSize="30sp"  />
 
-        <ImageButton
+        <Button
             android:id="@+id/button3"
-            android:layout_width="255dp"
-            android:layout_height="156dp"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:background="@color/yellow"
             android:onClick="exitGame"
-            android:src="@drawable/exitbutton" />
+            android:text="@string/exitGameButton"
+            android:textColor="@color/bluedark"
+            android:textSize="30sp"  />
 
     </LinearLayout>
 

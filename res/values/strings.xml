@@ -16,8 +16,8 @@
     <string name="dragonButton">Dragon</string>
     <string name="chooseNameButton">Name Your Pet</string>
     <string name="questionButton">Question</string>
-    <string name="feedButton">Feed</string>
-    <string name="petButton">Pet</string>
+    <string name="feedButton">Feed (-2)</string>
+    <string name="petButton">Pet  (-1)</string>
     <string name="storeButton">Store</string>
     <string name="title_activity_question_screen">QuestionScreen</string>
     <string name="hello_world">Hello world!</string>
