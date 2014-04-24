@@ -1,4 +1,3 @@
-//testing littlemb branch
 
 package com.example.game;
 
@@ -74,7 +73,8 @@ public class MainActivity extends Activity {
 	    {
 	    	Intent i = new Intent(getApplicationContext(), GameScreen.class);
     		//Set continue state flag
-	    	editor.putString("game_state", "loadState");
+	    	String tempState = settings.getString("game_state", null);
+		    editor.putString("game_state",tempState);
 	    	editor.commit();
 	    	startActivity(i);
 	    }

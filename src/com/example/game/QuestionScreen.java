@@ -16,8 +16,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.NavUtils;
 import android.view.ActionMode.Callback;
+import android.view.KeyEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -61,15 +64,58 @@ int waitTime = (int)((thirtyMinutes - nxtTime)/(1000*60))%60;
 if(nxtTime<=thirtyMinutes){
 	setContentView(R.layout.activity_question_screen);
 	openAlert("WAIT","Please wait "+waitTime+" minutes",1);
+	if((questionsAnsweredCorrect !=0) && (waitTime == 1))
+	{
+		questionsAnsweredCorrect = 0;
+	}
 }
 else{
 setContentView(R.layout.activity_question_screen);
 //progressDialog = ProgressDialog.show(QuestionScreen.this, "",
 //		"Loading...");
-questionsAnsweredCorrect = 0;
+SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+questionsAnsweredCorrect = settingsMoney.getInt("player_questionsCorrect", 0);
 resetTime();
 questionLoader = new QuestionLoader(getApplicationContext(), mHandler);
 this.setText();}
+}
+
+@Override
+public boolean onKeyDown(int keyCode, KeyEvent event) 
+{
+	if (keyCode == KeyEvent.KEYCODE_BACK) {
+		Intent intent = new Intent(this,GameScreen.class);
+	    startActivity(intent);
+	    SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+	    String tempState = settings.getString("game_state", null);
+	    editor.putString("game_state",tempState);
+    	editor.commit();
+    }
+    return super.onKeyDown(keyCode, event);
+}
+
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+	switch (item.getItemId()) {
+	case android.R.id.home:
+		// This ID represents the Home or Up button. In the case of this
+		// activity, the Up button is shown. Use NavUtils to allow users
+		// to navigate up one level in the application structure. For
+		// more details, see the Navigation pattern on Android Design:
+		//
+		// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+		//
+		NavUtils.navigateUpFromSameTask(this);
+		
+		SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	    SharedPreferences.Editor editor = settings.edit();
+	    String tempState = settings.getString("game_state", null);
+	    editor.putString("game_state",tempState);
+    	editor.commit();
+		return true;
+	}
+	return super.onOptionsItemSelected(item);
 }
 
 private void setText(){
@@ -128,18 +174,26 @@ public void onClick(View v){
 
 private void showOneButtonDialog(){
 	questionsAnsweredCorrect++;
-	if(questionsAnsweredCorrect==10){
-		questionBreak();
-	}
-	openAlert("Answer","You Are Correct!",0);
 	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editor = settings.edit();
+	if(questionsAnsweredCorrect==4){
+		questionBreak();
+		String tempState = settings.getString("game_state", null);
+	    editor.putString("game_state",tempState);
+	    editor.commit();
+	}
+	openAlert("Answer","You Are Correct!",0);
     SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editorMoney = settingsMoney.edit();
-    editorMoney.putInt("player_money", 10);
+    int intMoney = settingsMoney.getInt("player_money", 0);
+    intMoney += 10;
+    editorMoney.putInt("player_money", intMoney);
     editorMoney.commit();
-    editor.putString("game_state", "answerCorrect");
+    String tempState = settings.getString("game_state", null);
+    editor.putString("game_state",tempState);
     editor.commit();
+    editorMoney.putInt("player_questionsCorrect", questionsAnsweredCorrect);
+    editorMoney.commit();
     tries=0;
     setText();
 	}
@@ -161,6 +215,7 @@ private void showOneButtonDialog2(){
 }
 
 private void questionBreak(){
+	
 	openAlert("BreakTime!","Come back later.",1);
 	long time = System.currentTimeMillis();
 	editorQuestion.putLong("TIME", time);
@@ -182,11 +237,25 @@ private void openAlert(String title, String message, int finish) {
 	 dialogBuilder.setNeutralButton("OK",new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,int iD) {
 	            dialog.cancel();
+	            Intent i = new Intent(getApplicationContext(), GameScreen.class);
+	        	startActivity(i);
+	        	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+	            SharedPreferences.Editor editor = settings.edit();
+	            String tempState = settings.getString("game_state", null);
+			    editor.putString("game_state",tempState);
+	            editor.commit();
 			}
 		  });} else{
 			  dialogBuilder.setNeutralButton("OK",new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog,int iD) {
 			            dialog.cancel();
+			            Intent i = new Intent(getApplicationContext(), GameScreen.class);
+			        	startActivity(i);
+			        	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+			            SharedPreferences.Editor editor = settings.edit();
+			            String tempState = settings.getString("game_state", null);
+					    editor.putString("game_state",tempState);
+			            editor.commit();
 			            finish();
 					}
 				  });

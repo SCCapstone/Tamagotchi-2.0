@@ -85,7 +85,8 @@ public class QuestionLoader implements Runnable {
 	 */
 	private void loadQuestions() throws Exception {
 		try {
-			InputStream questionStream = mContext.getResources().openRawResource(R.raw.question);
+			InputStream questionStream = mContext.getResources()
+					.openRawResource(R.raw.question);
 			bufferedReader = new BufferedReader(new InputStreamReader(
 					questionStream));
 			StringBuilder quesString = new StringBuilder();

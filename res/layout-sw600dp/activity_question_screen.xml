@@ -21,40 +21,40 @@
          android:id="@+id/radioA"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_marginRight="30dp"
-         android:layout_marginLeft="30dp"
+         android:layout_marginRight="60dp"
+         android:layout_marginLeft="60dp"
          android:textColor="@color/yellow"
-         android:textSize="20sp"
+         android:textSize="40sp"
          android:text="7" />
 
      <RadioButton
          android:id="@+id/radioB"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_marginRight="30dp"
-         android:layout_marginLeft="30dp"
+         android:layout_marginRight="60dp"
+         android:layout_marginLeft="60dp"
          android:textColor="@color/yellow"
-         android:textSize="20sp"
+         android:textSize="40sp"
          android:text="10" />
 
      <RadioButton
          android:id="@+id/radioC"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_marginRight="30dp"
-         android:layout_marginLeft="30dp"
+         android:layout_marginRight="60dp"
+         android:layout_marginLeft="60dp"
          android:textColor="@color/yellow"
-         android:textSize="20sp"
+         android:textSize="40sp"
          android:text="2" />
 
      <RadioButton
          android:id="@+id/radioD"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_marginRight="30dp"
-         android:layout_marginLeft="30dp"
+         android:layout_marginRight="60dp"
+         android:layout_marginLeft="60dp"
          android:textColor="@color/yellow"
-         android:textSize="20sp"
+         android:textSize="40sp"
          android:text="4" />
  </RadioGroup>
 
@@ -67,18 +67,18 @@
      android:textColor="@color/yellow"
      android:layout_marginTop="52dp"
      android:text="@string/question"
-     android:textSize="30sp" />
+     android:textSize="55sp" />
 
  <Button
      android:id="@+id/btnSubmit"
-     android:layout_width="50dp"
-     android:layout_height="25dp"
+     android:layout_width="100dp"
+     android:layout_height="50dp"
      android:layout_alignParentBottom="true"
      android:layout_centerHorizontal="true"
      android:background="@color/yellow"
      android:textColor="@color/bluedark"
-     android:textSize="15sp"
-     android:layout_marginBottom="10dp"
+     android:textSize="20sp"
+     android:layout_marginBottom="72dp"
      android:text="@string/submitButton" />
 
 </RelativeLayout>

@@ -1,8 +1,8 @@
 package com.example.game;
 
-//test
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +54,16 @@ public class ChoosePet extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) 
+	{
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			Intent intent = new Intent(this,MainActivity.class);
+		    startActivity(intent);
+	    }
+	    return super.onKeyDown(keyCode, event);
 	}
 	
 	public void catClick(View v_chooseCat){

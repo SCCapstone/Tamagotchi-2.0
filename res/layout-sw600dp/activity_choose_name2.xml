@@ -13,7 +13,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:text="@string/chooseNameButton"
-        android:textSize="50px"
+        android:textSize="80px"
         android:textColor="@color/yellow" />
 
     <EditText
@@ -26,19 +26,21 @@
         android:layout_marginBottom="61dp"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
-        android:textSize="20px"
+        android:textSize="30px"
         android:ems="10"
         android:singleLine="true" >
 
         <requestFocus />
     </EditText>
 
-    <ImageButton
+    
+        <ImageButton
         android:id="@+id/Button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
         android:onClick="sendMessage"
         android:src="@drawable/arrow" />
     
