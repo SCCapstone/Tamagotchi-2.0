@@ -487,7 +487,6 @@ public class GameScreen extends Activity {
 			      public void run() {
 			       myAnimationDrawable.stop();
 			       myAnimationDrawable.start();
-			       //myAnimationDrawable.setOneShot(true);
 			     
 			      }
 			    });

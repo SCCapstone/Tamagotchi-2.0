@@ -47,4 +47,5 @@ android:duration="150"/>
 <item
 android:drawable="@drawable/idle0015"
 android:duration="150"/>
+
 </animation-list>
