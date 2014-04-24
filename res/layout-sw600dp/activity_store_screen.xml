@@ -2,7 +2,8 @@
     android:id="@+id/scrollView1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" 
-    android:background="@color/bluedark" >
+    android:background="@color/bluedark" 
+    android:scrollbar="vertical" >
 
     <TableLayout
         android:layout_width="match_parent"
