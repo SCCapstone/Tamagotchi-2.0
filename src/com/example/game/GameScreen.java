@@ -54,6 +54,64 @@ public class GameScreen extends Activity {
 	    
 	    
 	    
+	    String playerPet = settings.getString("player_pet", null);
+	    
+	    //inserting pet's based off a choice made on the previous screen
+	    if(playerPet.equalsIgnoreCase("cat"))
+	    {
+		    //Code to play the initial animation
+		    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+		    myAnimation.setImageResource(R.anim.catidle);
+		    final AnimationDrawable myAnimationDrawable
+		    = (AnimationDrawable)myAnimation.getDrawable();
+
+		    myAnimation.post(
+		    new Runnable(){
+
+		      @Override
+		      public void run() {
+		       myAnimationDrawable.start();
+		      }
+		    });
+	    }
+	    if(playerPet.equalsIgnoreCase("dog"))
+	    {
+		    //Code to play the initial animation
+		    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+		    myAnimation.setImageResource(R.anim.dogidle);
+		    final AnimationDrawable myAnimationDrawable
+		    = (AnimationDrawable)myAnimation.getDrawable();
+
+		    myAnimation.post(
+		    new Runnable(){
+
+		      @Override
+		      public void run() {
+		       myAnimationDrawable.start();
+		      }
+		    });
+	    	
+	    }
+	    if(playerPet.equalsIgnoreCase("dragon"))
+	    {
+		    //Code to play the initial animation
+		    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+		    myAnimation.setImageResource(R.anim.dragonidle);
+		    final AnimationDrawable myAnimationDrawable
+		    = (AnimationDrawable)myAnimation.getDrawable();
+
+		    myAnimation.post(
+		    new Runnable(){
+
+		      @Override
+		      public void run() {
+		       myAnimationDrawable.start();
+		      }
+		    });
+	    }
+	    
+	    
+	    
 	    if(gameState.equalsIgnoreCase("startState"))
 	    {
 	    	
@@ -83,6 +141,62 @@ public class GameScreen extends Activity {
 		    money.setText(strMoney);
 	    	name.setText(stringName);
 	    	
+	    	//String playerPet = settings.getString("player_pet", null);
+		    
+		    //inserting pet's based off a choice made on the previous screen
+		    if(playerPet.equalsIgnoreCase("cat"))
+		    {
+			    //Code to play the initial animation
+			    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+			    myAnimation.setImageResource(R.anim.catidle);
+			    final AnimationDrawable myAnimationDrawable
+			    = (AnimationDrawable)myAnimation.getDrawable();
+
+			    myAnimation.post(
+			    new Runnable(){
+
+			      @Override
+			      public void run() {
+			       myAnimationDrawable.start();
+			      }
+			    });
+		    }
+		    if(playerPet.equalsIgnoreCase("dog"))
+		    {
+			    //Code to play the initial animation
+			    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+			    myAnimation.setImageResource(R.anim.dogidle);
+			    final AnimationDrawable myAnimationDrawable
+			    = (AnimationDrawable)myAnimation.getDrawable();
+
+			    myAnimation.post(
+			    new Runnable(){
+
+			      @Override
+			      public void run() {
+			       myAnimationDrawable.start();
+			      }
+			    });
+		    	
+		    }
+		    if(playerPet.equalsIgnoreCase("dragon"))
+		    {
+			    //Code to play the initial animation
+			    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+			    myAnimation.setImageResource(R.anim.dragonidle);
+			    final AnimationDrawable myAnimationDrawable
+			    = (AnimationDrawable)myAnimation.getDrawable();
+
+			    myAnimation.post(
+			    new Runnable(){
+
+			      @Override
+			      public void run() {
+			       myAnimationDrawable.start();
+			      }
+			    });
+		    }
+	    	
 	    }
 	    
 	    if(gameState.equalsIgnoreCase("answerCorrect"))
@@ -94,6 +208,62 @@ public class GameScreen extends Activity {
 	    	String strMoney = String.valueOf(intMoney);
 		    money.setText(strMoney);
 	    	name.setText(stringName);
+	    	
+	    	//String playerPet = settings.getString("player_pet", null);
+		    
+		    //inserting pet's based off a choice made on the previous screen
+		    if(playerPet.equalsIgnoreCase("cat"))
+		    {
+			    //Code to play the initial animation
+			    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+			    myAnimation.setImageResource(R.anim.catidle);
+			    final AnimationDrawable myAnimationDrawable
+			    = (AnimationDrawable)myAnimation.getDrawable();
+
+			    myAnimation.post(
+			    new Runnable(){
+
+			      @Override
+			      public void run() {
+			       myAnimationDrawable.start();
+			      }
+			    });
+		    }
+		    if(playerPet.equalsIgnoreCase("dog"))
+		    {
+			    //Code to play the initial animation
+			    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+			    myAnimation.setImageResource(R.anim.dogidle);
+			    final AnimationDrawable myAnimationDrawable
+			    = (AnimationDrawable)myAnimation.getDrawable();
+
+			    myAnimation.post(
+			    new Runnable(){
+
+			      @Override
+			      public void run() {
+			       myAnimationDrawable.start();
+			      }
+			    });
+		    	
+		    }
+		    if(playerPet.equalsIgnoreCase("dragon"))
+		    {
+			    //Code to play the initial animation
+			    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
+			    myAnimation.setImageResource(R.anim.dragonidle);
+			    final AnimationDrawable myAnimationDrawable
+			    = (AnimationDrawable)myAnimation.getDrawable();
+
+			    myAnimation.post(
+			    new Runnable(){
+
+			      @Override
+			      public void run() {
+			       myAnimationDrawable.start();
+			      }
+			    });
+		    }
 	    	
 	    }
 	    /*
@@ -240,62 +410,7 @@ public class GameScreen extends Activity {
 	    	
 	    }
 	    
-	    
-	    String playerPet = settings.getString("player_pet", null);
-	    
-	    //inserting pet's based off a choice made on the previous screen
-	    if(playerPet.equalsIgnoreCase("cat"))
-	    {
-		    //Code to play the initial animation
-		    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
-		    myAnimation.setImageResource(R.anim.catidle);
-		    final AnimationDrawable myAnimationDrawable
-		    = (AnimationDrawable)myAnimation.getDrawable();
 
-		    myAnimation.post(
-		    new Runnable(){
-
-		      @Override
-		      public void run() {
-		       myAnimationDrawable.start();
-		      }
-		    });
-	    }
-	    if(playerPet.equalsIgnoreCase("dog"))
-	    {
-		    //Code to play the initial animation
-		    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
-		    myAnimation.setImageResource(R.anim.dogidle);
-		    final AnimationDrawable myAnimationDrawable
-		    = (AnimationDrawable)myAnimation.getDrawable();
-
-		    myAnimation.post(
-		    new Runnable(){
-
-		      @Override
-		      public void run() {
-		       myAnimationDrawable.start();
-		      }
-		    });
-	    	
-	    }
-	    if(playerPet.equalsIgnoreCase("dragon"))
-	    {
-		    //Code to play the initial animation
-		    ImageView myAnimation = (ImageView)findViewById(R.id.myanimation);
-		    myAnimation.setImageResource(R.anim.dragonidle);
-		    final AnimationDrawable myAnimationDrawable
-		    = (AnimationDrawable)myAnimation.getDrawable();
-
-		    myAnimation.post(
-		    new Runnable(){
-
-		      @Override
-		      public void run() {
-		       myAnimationDrawable.start();
-		      }
-		    });
-	    }
 	 
 	    
 	    
@@ -397,17 +512,18 @@ public class GameScreen extends Activity {
 		SharedPreferences.Editor editorMoney = settingsMoney.edit();
 		
 	  	String playerPet = settings.getString("player_pet", null);
+	  	//Toast.makeText(getApplicationContext(),  playerPet , Toast.LENGTH_SHORT).show();
 
 		    //inserting pet's based off a choice made on the previous screen
-		    if(playerPet == "cat")
+		    if(playerPet.equalsIgnoreCase("cat"))
 		    {
 		    	myAnimation.setImageResource(R.anim.catfeed);
 		    }
-		    if(playerPet == "dog")
+		    if(playerPet.equalsIgnoreCase("dog"))
 		    {
 		    	myAnimation.setImageResource(R.anim.dogfeed);
 		    }
-		    if(playerPet == "dragon")
+		    if(playerPet.equalsIgnoreCase("dragon"))
 		    {
 		    	myAnimation.setImageResource(R.anim.dragonfeed);
 		    }
@@ -427,6 +543,7 @@ public class GameScreen extends Activity {
 
 		      @Override
 		      public void run() {
+		       myAnimationDrawable.stop();
 		       myAnimationDrawable.start();
 		      }
 		    });
@@ -448,15 +565,15 @@ public class GameScreen extends Activity {
 	  	String playerPet = settings.getString("player_pet", null);
 
 	    //inserting pet's based off a choice made on the previous screen
-	    if(playerPet == "cat")
+	    if(playerPet.equalsIgnoreCase("cat"))
 	    {
 	    	myAnimation.setImageResource(R.anim.catpet);
 	    }
-	    if(playerPet == "dog")
+	    if(playerPet.equalsIgnoreCase("dog"))
 	    {
 	    	myAnimation.setImageResource(R.anim.dogpet);
 	    }
-	    if(playerPet == "dragon")
+	    if(playerPet.equalsIgnoreCase("dragon"))
 	    {
 	    	myAnimation.setImageResource(R.anim.dragonpet);
 	    }
@@ -471,14 +588,13 @@ public class GameScreen extends Activity {
 			money.setText(strMoney);
 			 final AnimationDrawable myAnimationDrawable
 			    = (AnimationDrawable)myAnimation.getDrawable();
-
 			    myAnimation.post(
 			    new Runnable(){
 
 			      @Override
 			      public void run() {
 			       myAnimationDrawable.start();
-
+			       //myAnimationDrawable.setOneShot(true);
 			      }
 			    });
 		} else{
