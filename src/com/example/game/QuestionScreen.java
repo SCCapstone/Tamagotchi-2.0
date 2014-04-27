@@ -42,7 +42,9 @@ private String[] answers;
 private int correctAnswer;
 private int tries =0;
 private int questionsAnsweredCorrect = 0;
+private int questionsAnsweredCorrectSaved = 0;
 private TextView t;
+private TextView c;
 
 private RadioButton answer1;
 private RadioButton answer2;
@@ -75,6 +77,7 @@ setContentView(R.layout.activity_question_screen);
 //		"Loading...");
 SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
 questionsAnsweredCorrect = settingsMoney.getInt("player_questionsCorrect", 0);
+questionsAnsweredCorrectSaved= questionSettings.getInt("correctly_answered", 0);
 resetTime();
 questionLoader = new QuestionLoader(getApplicationContext(), mHandler);
 this.setText();}
@@ -122,10 +125,15 @@ private void setText(){
 	questionLoader.run();
 	t=new TextView(this);
 	t=(TextView)findViewById(R.id.textView1);
+	
+	c = new TextView(this);
+	c=(TextView)findViewById(R.id.editText1);
+	
 
 	addListenerOnButton();
 	question = questionLoader.getQuestion();
 	t.setText(question);
+	c.setText("Correctly Answered: "+ questionsAnsweredCorrectSaved);
 	
 
 	answer1 = (RadioButton) findViewById(R.id.radioA);
@@ -173,9 +181,15 @@ public void onClick(View v){
 }
 
 private void showOneButtonDialog(){
+	
 	questionsAnsweredCorrect++;
+	questionsAnsweredCorrectSaved++;
+	questionLoader.correctAnswer();
+	
 	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
-    SharedPreferences.Editor editor = settings.edit();
+    SharedPreferences.Editor editor = settings.edit();	
+    editor.putInt("correctly_answered", questionsAnsweredCorrectSaved);
+    editor.commit();
 	if(questionsAnsweredCorrect==4){
 		questionBreak();
 		String tempState = settings.getString("game_state", null);

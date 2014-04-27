@@ -81,4 +81,15 @@
      android:layout_marginBottom="72dp"
      android:text="@string/submitButton" />
 
+ <TextView
+     android:id="@+id/editText1"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_alignParentRight="true"
+     android:layout_alignParentTop="true"
+     android:layout_marginTop="34dp"
+     android:textColor="@color/yellow"
+     android:textSize="20sp"
+     android:ems="10" />
+
 </RelativeLayout>
