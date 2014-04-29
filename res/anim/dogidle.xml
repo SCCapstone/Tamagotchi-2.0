@@ -32,20 +32,5 @@ android:duration="150"/>
 <item
 android:drawable="@drawable/dogidle10010"
 android:duration="150"/>
-<item
-android:drawable="@drawable/dogidle10011"
-android:duration="150"/>
-<item
-android:drawable="@drawable/dogidle10012"
-android:duration="150"/>
-<item
-android:drawable="@drawable/dogidle10013"
-android:duration="150"/>
-<item
-android:drawable="@drawable/dogidle10014"
-android:duration="150"/>
-<item
-android:drawable="@drawable/dogidle10015"
-android:duration="150"/>
 
 </animation-list>

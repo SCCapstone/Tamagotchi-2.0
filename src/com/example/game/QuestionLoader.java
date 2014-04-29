@@ -46,6 +46,7 @@ public class QuestionLoader implements Runnable {
 	private static JSONArray questionList = null;
 	private JSONArray answerList;
 	private List<Integer> wrongAnswers = new ArrayList<Integer>();
+	private List<Integer> correctAnswers = new ArrayList<Integer>();
 	
 	private String question;
 	
@@ -173,6 +174,14 @@ public class QuestionLoader implements Runnable {
 	public void wrongAnswer(){
 		wrongAnswers.add(currentQuestion);
 	}
+	
+	public void correctAnswer(){
+		correctAnswers.add(currentQuestion);
+	}
+	
+	public int numOfCorrectlyAnswered(){
+		return correctAnswers.size();
+	}
 
 	@Override
 	public void run() {
@@ -189,4 +198,3 @@ public class QuestionLoader implements Runnable {
 	}
 
 }
-

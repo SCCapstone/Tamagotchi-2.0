@@ -32,21 +32,7 @@ android:duration="150"/>
 <item
 android:drawable="@drawable/dogpet10"
 android:duration="150"/>
-<item
-android:drawable="@drawable/dogpet11"
-android:duration="150"/>
-<item
-android:drawable="@drawable/dogpet12"
-android:duration="150"/>
-<item
-android:drawable="@drawable/dogpet13"
-android:duration="150"/>
-<item
-android:drawable="@drawable/dogpet14"
-android:duration="150"/>
-<item
-android:drawable="@drawable/dogpet15"
-android:duration="150"/>
+
 
 
 

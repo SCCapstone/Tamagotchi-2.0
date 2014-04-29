@@ -32,21 +32,6 @@ android:duration="100"/>
 <item
 android:drawable="@drawable/eatcat0010"
 android:duration="100"/>
-<item
-android:drawable="@drawable/eatcat0011"
-android:duration="100"/>
-<item
-android:drawable="@drawable/eatcat0012"
-android:duration="100"/>
-<item
-android:drawable="@drawable/eatcat0013"
-android:duration="100"/>
-<item
-android:drawable="@drawable/eatcat0014"
-android:duration="100"/>
-<item
-android:drawable="@drawable/eatcat0015"
-android:duration="100"/>
 
 
 </animation-list>

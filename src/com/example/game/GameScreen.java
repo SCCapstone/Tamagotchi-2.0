@@ -116,18 +116,31 @@ public class GameScreen extends Activity {
 	    
 	    if(gameState.equalsIgnoreCase("startState"))
 	    {
-	    	
+
 	    	String playerName = settings.getString("player_name", null);
 		    //editor.putInt("player_money", 5);
 		    //editor.commit();
 		   	name.setText(playerName);
 		    int intMoney = settingsMoney.getInt("player_money", 0);
 		    String strMoney = String.valueOf(intMoney);
-		    money.setText(strMoney);	
+		    money.setText(strMoney);
+		    editor.putString("button","x");
+		    editor.putString("Beach","x");
+		    editor.putString("BeachTrees","x");
+		    editor.putString("BeachMystery","x");
+		    editor.putString("Meadow","x");
+		    editor.putString("MeadowTrees","x");
+		    editor.putString("MeadowMystery","x");
+		    editor.putString("Forest","x");
+		    editor.putString("ForestTrees","x");
+		    editor.putString("ForestMystery","x");
+		    
+		    editor.commit();
 	    	//set all variables to start state
 		    //SharedPreferences.Editor editor = settings.edit();
 	    	//SharedPreferences.Editor editorMoney = settingsMoney.edit();
 	    }
+
 	   
 	   
 	    if(gameState.equalsIgnoreCase("loadState"))

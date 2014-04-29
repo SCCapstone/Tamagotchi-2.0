@@ -42,7 +42,9 @@ private String[] answers;
 private int correctAnswer;
 private int tries =0;
 private int questionsAnsweredCorrect = 0;
+private int questionsAnsweredCorrectSaved = 0;
 private TextView t;
+private TextView c;
 
 private RadioButton answer1;
 private RadioButton answer2;
@@ -57,8 +59,16 @@ private static long thirtyMinutes = 1800000/2;
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
+
+SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
+questionsAnsweredCorrectSaved = settings.getInt("correctly_answered",0);
+
 questionSettings = this.getSharedPreferences("prefs_questions", Activity.MODE_PRIVATE);
 editorQuestion = questionSettings.edit();
+SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+
+
+
 long nxtTime = System.currentTimeMillis() - questionSettings.getLong("TIME", 0);
 int waitTime = (int)((thirtyMinutes - nxtTime)/(1000*60))%60;
 if(nxtTime<=thirtyMinutes){
@@ -73,7 +83,7 @@ else{
 setContentView(R.layout.activity_question_screen);
 //progressDialog = ProgressDialog.show(QuestionScreen.this, "",
 //		"Loading...");
-SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
+
 questionsAnsweredCorrect = settingsMoney.getInt("player_questionsCorrect", 0);
 resetTime();
 questionLoader = new QuestionLoader(getApplicationContext(), mHandler);
@@ -122,10 +132,15 @@ private void setText(){
 	questionLoader.run();
 	t=new TextView(this);
 	t=(TextView)findViewById(R.id.textView1);
+	
+	c = new TextView(this);
+	c=(TextView)findViewById(R.id.editText1);
+	
 
 	addListenerOnButton();
 	question = questionLoader.getQuestion();
 	t.setText(question);
+	c.setText("Correctly Answered: "+ questionsAnsweredCorrectSaved);
 	
 
 	answer1 = (RadioButton) findViewById(R.id.radioA);
@@ -173,25 +188,36 @@ public void onClick(View v){
 }
 
 private void showOneButtonDialog(){
+	
 	questionsAnsweredCorrect++;
+	questionsAnsweredCorrectSaved++;
+	questionLoader.correctAnswer();
+	
 	SharedPreferences settings = getSharedPreferences("prefs_tamagotchi", Activity.MODE_PRIVATE);
-    SharedPreferences.Editor editor = settings.edit();
-	if(questionsAnsweredCorrect==4){
+    SharedPreferences.Editor editor = settings.edit();	
+    editor.putInt("correctly_answered", questionsAnsweredCorrectSaved);
+    editor.commit();
+    
+    
+	if(questionsAnsweredCorrect>=4){
 		questionBreak();
 		String tempState = settings.getString("game_state", null);
 	    editor.putString("game_state",tempState);
 	    editor.commit();
 	}
 	openAlert("Answer","You Are Correct!",0);
+	
     SharedPreferences settingsMoney = getSharedPreferences("prefs_money", Activity.MODE_PRIVATE);
     SharedPreferences.Editor editorMoney = settingsMoney.edit();
     int intMoney = settingsMoney.getInt("player_money", 0);
     intMoney += 10;
     editorMoney.putInt("player_money", intMoney);
     editorMoney.commit();
+    
     String tempState = settings.getString("game_state", null);
     editor.putString("game_state",tempState);
     editor.commit();
+    
     editorMoney.putInt("player_questionsCorrect", questionsAnsweredCorrect);
     editorMoney.commit();
     tries=0;
